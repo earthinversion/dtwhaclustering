@@ -1,11 +1,12 @@
 Metadata-Version: 2.1
 Name: dtwhaclustering
-Version: 1.0.0
+Version: 1.0.3
 Summary: Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
 Home-page: https://github.com/earthinversion/DTW-based-Hierarchical-Clustering
 Author: Utpal Kumar
 Author-email: utpalkumar50@gmail.com
 License: Apache 2.0
+Keywords: dynamic time warping clustering
 Platform: UNKNOWN
 Classifier: License :: OSI Approved :: Apache Software License
 Classifier: Programming Language :: Python :: 3
@@ -28,6 +29,18 @@ similarity among the waveforms will be obtained using the DTW distance.
 
 __author__: Utpal Kumar
 __date__: 2021/06
+
+## Usage
+### Least-squares modeling
+
+![Load Pickle Data into Pandas DataFrame](https://raw.githubusercontent.com/earthinversion/DTW-based-Hierarchical-Clustering/master/images/load_data.png?token=ADNOWX7G3OSZIVAAFBM2DADAZSOG2)
+
+```
+from dtwhaclustering.leastSquareModeling import lsqmodeling
+final_dU, final_dN, final_dE = lsqmodeling(dUU, dNN, dEE,stnlocfile="helper_files/stn_loc.txt",  plot_results=True, remove_trend=False, remove_seasonality=True, remove_jumps=False)
+```
+
+![LSQ Model](https://raw.githubusercontent.com/earthinversion/DTW-based-Hierarchical-Clustering/master/images/time_series_SLNP_U.png?token=ADNOWX6QYC7CK3FDFECN4X3AZSOIW)
 
 ## License
 © 2021 Utpal Kumar

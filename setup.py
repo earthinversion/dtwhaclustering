@@ -34,7 +34,7 @@ else:
 # This call to setup() does all the work
 setup(
     name="dtwhaclustering",
-    version="1.0.0",
+    version=version,
     description="Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -51,6 +51,7 @@ setup(
     include_package_data=True,
     install_requires=install_requires,
     setup_requires=setup_requires,
+    keywords='dynamic time warping clustering',
     extras_require={
         'vis': ['matplotlib', 'pygmt'],
         'numpy': ['numpy', 'scipy'],
