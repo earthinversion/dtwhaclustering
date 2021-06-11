@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: dtwhaclustering
+Version: 1.0.0
+Summary: Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
+Home-page: https://github.com/earthinversion/DTW-based-Hierarchical-Clustering
+Author: Utpal Kumar
+Author-email: utpalkumar50@gmail.com
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+Provides-Extra: vis
+Provides-Extra: numpy
+Provides-Extra: all
+License-File: LICENSE
+
+# Dynamic Time Warping based Hierarchical Agglomerative Clustering
+
+Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
+
+## Details
+
+This package include codes for processing the GPS displacement data including least-square modelling for trend, co-seismic jumps, 
+seasonal and tidal signals. Finally, it can be used to cluster the GPS displacements based on the similarity of the waveforms. The
+similarity among the waveforms will be obtained using the DTW distance.
+
+__author__: Utpal Kumar
+__date__: 2021/06
+
+## License
+© 2021 Utpal Kumar
+
+Licensed under the Apache License, Version 2.0
+

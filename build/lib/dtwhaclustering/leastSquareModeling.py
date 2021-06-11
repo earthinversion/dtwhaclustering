@@ -1,19 +1,17 @@
 """
-dtwhaclustering.leastSquareModeling
-------------------------------------
-Least square modeling of GPS displacements for seasonality, tidal, co-seismic jumps.
-
-:author: Utpal Kumar
-:date: 2021/06
-:copyright: Copyright 2021 Institute of Earth Sciences, Academia Sinica.
+Author: Utpal Kumar
+Date: 2021/06
 """
 
-
+import scipy.io as sio
+from matplotlib import style
 import pandas as pd
 import numpy as np
 from scipy.optimize import least_squares
+from numpy import linalg as LA
 import matplotlib.pyplot as plt
-from analysis_support import toYearFraction
+from datetime import datetime, timedelta
+from .analysis_support import toYearFraction
 import matplotlib
 from tqdm import tqdm
 # from tqdm.notebook import tqdm
@@ -28,24 +26,12 @@ font = {'family': 'Times',
         'size': 22}
 
 matplotlib.rc('font', **font)
+plt.rcParams["figure.figsize"] = (12, 6)
 plt.style.use('ggplot')
-
-# to edit text in Illustrator
-# matplotlib.rcParams['pdf.fonttype'] = 42
 
 
 class LSQmodules:
-    def __init__(self, dUU, sel_eq_file=None, station_loc_file="helper_files/stn_loc.txt", comp="U", figdir="LSQOut", periods=(13.6608, 14.7653, 27.5546, 182.62, 365.26, 18.6)):
-        '''
-        Perform least square modeling of the time series in dUU
-
-        :param dUU: Pandas dataframe containing the time series for the modeling. Should have time information as pandas datetime format in the index
-        :param sel_eq_file: File containing the earthquake origin times e.g., `2009,1,15` with header info, e.g. `year_val,month_val,date_val`
-        :param station_loc_file: File containing the station location info, e.g., `DAWU,120.89004,22.34059`, with header `stn,lon,lat`
-        :param comp: Component name of the data provided
-        :param figdir: Output directory for the figures, if requested
-        :param periods: Periods for the tidal and seasonal signals. e.g., (13.6608, 14.7653, 27.5546, 182.62, 365.26, 18.6). All in days except 18.6 years.
-        '''
+    def __init__(self, dUU, sel_eq_file="selected_eqs_new.txt", station_loc_file="helper_files/stn_loc.txt", comp="U", figdir="LSQOut"):
         self.dUU = dUU
         self.comp = comp
         # convert time to decimal year
@@ -56,36 +42,34 @@ class LSQmodules:
         self.xval = np.array(year)
 
         # Periods in year for removal of tidal and seasonal signals
-        yr = periods[4]
-        P1 = periods[0]/yr
-        P2 = periods[1]/yr
-        P3 = periods[2]/yr
-        P4 = periods[3]/yr
+        yr = 365.26
+        P1 = 13.6608/yr
+        P2 = 14.7653/yr
+        P3 = 27.5546/yr
+        P4 = 182.62/yr
         P5 = yr/yr
-        P6 = periods[5]  # in year
+        P6 = 18.6
         self.periods = np.array([pp for pp in [P1, P2, P3, P4, P5, P6]])
-        if sel_eq_file and os.path.exists(sel_eq_file):
-            # selected earthquakes for the removal using least squares method
-            dftmp = pd.read_csv(sel_eq_file)
-            tmp = []
-            for yr, mn, dt in zip(dftmp['year_val'].values, dftmp['month_val'].values, dftmp['date_val'].values):
-                if yr < 10:
-                    yr = '0{}'.format(yr)
-                if mn < 10:
-                    mn = '0{}'.format(mn)
-                tmp.append('{}-{}-{}'.format(yr, mn, dt))
-            # print(tmp)
-            evs = pd.DatetimeIndex(tmp)  # string to pandas datetimeIndex
-            # converting the events to year fraction
-            events = []
-            for ee in evs:
-                ee_frac = round(toYearFraction(ee), 5)
-                if self.xval.min() < ee_frac < self.xval.max():
-                    events.append(ee_frac)
 
-            self.events = events
-        else:
-            self.events = []
+        # selected earthquakes for the removal using least squares method
+        dftmp = pd.read_csv(sel_eq_file)
+        tmp = []
+        for yr, mn, dt in zip(dftmp['year_val'].values, dftmp['month_val'].values, dftmp['date_val'].values):
+            if yr < 10:
+                yr = '0{}'.format(yr)
+            if mn < 10:
+                mn = '0{}'.format(mn)
+            tmp.append('{}-{}-{}'.format(yr, mn, dt))
+        # print(tmp)
+        evs = pd.DatetimeIndex(tmp)  # string to pandas datetimeIndex
+        # converting the events to year fraction
+        events = []
+        for ee in evs:
+            ee_frac = round(toYearFraction(ee), 5)
+            if self.xval.min() < ee_frac < self.xval.max():
+                events.append(ee_frac)
+
+        self.events = events
 
         # read station information
         self.stnloc = pd.read_csv(station_loc_file, header=None,
@@ -102,31 +86,14 @@ class LSQmodules:
 
     # defining the jump function
     def jump(self, t, t0):
-        '''
-        heaviside step function
-
-        :param t: time data
-        :param t0: earthquake origin time
-        '''
+        "heaviside step function"
         o = np.zeros(len(t))
         ind = np.where(t == t0)[0][0]
         o[ind:] = 1.0
         return o
 
-    def compute_lsq(self, plot_results=False, remove_trend=True, remove_seasonality=True, remove_jumps=True, plotformat=None):
-        '''
-        Compute the least-squares model using multithreading
-
-        :param plot_results: plot the final results
-        :param remove_trend: return the time series after removing the linear trend 
-        :param remove_seasonality: return the time series after removing the seasonal signals
-        :param remove_jumps: return the time series after removing the co-seismic jumps
-        :param plotformat: plot format of the output figure, e.g. "png". "pdf" by default.
-        '''
+    def compute_lsq(self, plot_results=False, remove_trend=True, remove_seasonality=True, remove_jumps=True):
         def all_jumps(t, *cc):
-            '''
-            aggregate all jumps
-            '''
             out = cc[0]*self.jump(t, self.events[0])
             for idx, ccval in enumerate(cc[1:]):
                 eidx = idx+1
@@ -137,9 +104,6 @@ class LSQmodules:
         # defining the function for the removal of trend, seasonal, tidal and co-seismic signals
 
         def lsqfun(coeff, t, y):
-            '''
-            least squares function
-            '''
             return coeff[0] + coeff[1] * t \
                 + coeff[2] * np.cos(2*np.pi * t/self.periods[0]) + coeff[3] * np.sin(2*np.pi * t/self.periods[0]) \
                 + coeff[4] * np.cos(2*np.pi * t/self.periods[1]) + coeff[5] * np.sin(2*np.pi * t/self.periods[1]) \
@@ -154,9 +118,6 @@ class LSQmodules:
 
         # function for regenerating the data after removal of signals
         def gen_data(t, a, b, a1, b1, a2, b2, a3, b3, a4, b4, a5, b5, *cc):
-            '''
-            output model of least squares
-            '''
             y = a + b * t+a1 * np.cos(2*np.pi * t/self.periods[0])+b1 * np.sin(2*np.pi * t/self.periods[0])\
                 + a2 * np.cos(2*np.pi * t/self.periods[1])+b2 * np.sin(2*np.pi * t/self.periods[1])\
                 + a3 * np.cos(2*np.pi * t/self.periods[2])+b3 * np.sin(2*np.pi * t/self.periods[2])\
@@ -166,9 +127,6 @@ class LSQmodules:
             return y
 
         def _computelsq(stn, x0, yval1):
-            '''
-            Compute the lsq, and residuals
-            '''
             try:
                 res_lsq = least_squares(lsqfun, x0, args=(self.xval, yval1))
                 trendU = res_lsq.x[0]+self.xval*res_lsq.x[1]
@@ -270,15 +228,9 @@ class LSQmodules:
 
                     for axx in ax:
                         axx.set_ylim([mindisp, maxdisp])
-                    if plotformat:
-                        try:
-                            plt.savefig(os.path.join(
-                                self.figdir, f'time_series_{stn}_{self.comp}.{plotformat}'), bbox_inches='tight', dpi=200)
-                        except Exception as e:
-                            print(sys.exc_info())
-                    else:
-                        plt.savefig(os.path.join(
-                            self.figdir, f'time_series_{stn}_{self.comp}.pdf'), bbox_inches='tight')
+
+                    plt.savefig(os.path.join(
+                        self.figdir, f'time_series_{stn}_{self.comp}.png'), bbox_inches='tight', dpi=200)
                     plt.close("all")
 
                 final_dU[colval] = final_residual
@@ -286,40 +238,30 @@ class LSQmodules:
         return final_dU
 
 
-def lsqmodeling(dUU, dNN, dEE, stnlocfile,  plot_results=True, remove_trend=False, remove_seasonality=True, remove_jumps=False, sel_eq_file="helper_files/selected_eqs_new.txt", figdir="LSQOut"):
-    '''
-    Least square modeling for the three component time series
-
-    :param dUU: Vertical component pandas dataframe time series
-    :param dNN: North component pandas dataframe time series
-    :param dEE: East component pandas dataframe time series
-    :param plot_results: plot the final results
-    :param remove_trend: return the time series after removing the linear trend 
-    :param remove_seasonality: return the time series after removing the seasonal signals
-    :param remove_jumps: return the time series after removing the co-seismic jumps
-    :param sel_eq_file: File containing the earthquake origin times e.g., `2009,1,15` with header info, e.g. `year_val,month_val,date_val`
-    :param stnlocfile: File containing the station location info, e.g., `DAWU,120.89004,22.34059`, with header `stn,lon,lat`
-    :return: Pandas dataframe corresponding to the vertical, north and east components e.g., final_dU, final_dN, final_dE 
-    '''
+def lsqmodeling(dUU, dNN, dEE, stnlocfile,  plot_results=True, remove_trend=False, remove_seasonality=True, remove_jumps=False, sel_eq_file="helper_files/selected_eqs_new.txt"):
     ################################################
     final_dU, final_dN, final_dE = None, None, None
 
     lsqmod_U = LSQmodules(dUU, sel_eq_file=sel_eq_file,
-                          station_loc_file=stnlocfile, comp="U", figdir=figdir)
+                          station_loc_file=stnlocfile, comp="U")
     final_dU = lsqmod_U.compute_lsq(
         plot_results=plot_results, remove_trend=remove_trend, remove_seasonality=remove_seasonality, remove_jumps=remove_jumps)
     del lsqmod_U
 
     lsqmod_N = LSQmodules(dNN, sel_eq_file=sel_eq_file,
-                          station_loc_file=stnlocfile, comp="N", figdir=figdir)
+                          station_loc_file=stnlocfile, comp="N")
     final_dN = lsqmod_N.compute_lsq(plot_results=plot_results, remove_trend=remove_trend,
                                     remove_seasonality=remove_seasonality, remove_jumps=remove_jumps)
     del lsqmod_N
 
     lsqmod_E = LSQmodules(dEE, sel_eq_file=sel_eq_file,
-                          station_loc_file=stnlocfile, comp="E", figdir=figdir)
+                          station_loc_file=stnlocfile, comp="E")
     final_dE = lsqmod_E.compute_lsq(plot_results=plot_results, remove_trend=remove_trend,
                                     remove_seasonality=remove_seasonality, remove_jumps=remove_jumps)
     del lsqmod_E
 
     return final_dU, final_dN, final_dE
+
+
+if __name__ == '__main__':
+    pass

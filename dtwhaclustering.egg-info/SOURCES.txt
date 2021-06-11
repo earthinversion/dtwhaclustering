@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+dtwhaclustering/__init__.py
+dtwhaclustering/__main__.py
+dtwhaclustering/analysis_support.py
+dtwhaclustering/dtw_analysis.py
+dtwhaclustering/leastSquareModeling.py
+dtwhaclustering/plot_linear_trend.py
+dtwhaclustering/plot_stations.py
+dtwhaclustering.egg-info/PKG-INFO
+dtwhaclustering.egg-info/SOURCES.txt
+dtwhaclustering.egg-info/dependency_links.txt
+dtwhaclustering.egg-info/requires.txt
+dtwhaclustering.egg-info/top_level.txt

@@ -21,9 +21,7 @@ import xarray as xr
 
 import pandas as pd
 
-# from dtaidistance.clustering.hierarchical import HierarchicalTree
-# from dtaidistance import clustering
-from dtaidistance.clustering import HierarchicalTree
+from dtaidistance.clustering.hierarchical import HierarchicalTree
 
 fontsize = 26
 fontsize0 = 20

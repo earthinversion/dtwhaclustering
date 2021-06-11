@@ -13,8 +13,6 @@ similarity among the waveforms will be obtained using the DTW distance.
 :date: 2021/06
 '''
 import sys
-import leastSquareModeling
-import dtw_analysis
 
 if __name__ == '__main__':
     info = \

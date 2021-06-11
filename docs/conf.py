@@ -26,7 +26,7 @@ author = 'Utpal Kumar'
 release = '0.1'
 
 autodoc_mock_imports = ['dtaidistance',
-                        'pygmt', 'pandas', 'numpy', 'matplotlib', 'scipy', 'xarray']
+                        'pygmt', 'pandas', 'numpy', 'matplotlib', 'scipy', 'xarray', 'tqdm']
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be

@@ -12,7 +12,7 @@ Requirements
 #. ``xarray``: Multilayered data structure
 
 Install from PyPI
----------
+-----------------
 
 This packages is available on PyPI (requires Python 3):
 

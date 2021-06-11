@@ -11,6 +11,18 @@ similarity among the waveforms will be obtained using the DTW distance.
 __author__: Utpal Kumar
 __date__: 2021/06
 
+## Usage
+### Least-squares modeling
+
+![Load Pickle Data into Pandas DataFrame](images/load_data.png)
+
+```
+from dtwhaclustering.leastSquareModeling import lsqmodeling
+final_dU, final_dN, final_dE = lsqmodeling(dUU, dNN, dEE,stnlocfile="helper_files/stn_loc.txt",  plot_results=True, remove_trend=False, remove_seasonality=True, remove_jumps=False)
+```
+
+![LSQ Model](images/time_series_SLNP_U.png)
+
 ## License
 © 2021 Utpal Kumar
 

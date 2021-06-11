@@ -22,6 +22,8 @@ Hierarchical Agglomerative Clustering using DTW distance metric for the continuo
    modules/analysis_support
    modules/plot_linear_trend
    modules/plot_stations
+   modules/leastSquareModeling
+
 
 
 Indices and tables
