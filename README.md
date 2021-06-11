@@ -11,3 +11,7 @@ similarity among the waveforms will be obtained using the DTW distance.
 __author__: Utpal Kumar
 __date__: 2021/06
 
+## License
+© 2021 Utpal Kumar
+
+Licensed under the Apache License, Version 2.0
