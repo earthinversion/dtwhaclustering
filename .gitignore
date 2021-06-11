@@ -1,0 +1,8 @@
+.DS_Store
+.ipynb_checkpoints/part1_dtw_hac_east_coast_gps_taiwan-checkpoint.ipynb
+.ipynb_checkpoints/part2_remove_trend_seasonality_least_square_modeling-checkpoint.ipynb
+.ipynb_checkpoints/part3_-checkpoint.ipynb
+*.pyc
+.ipynb_checkpoints/part3_eof_analysis_of_data-checkpoint.ipynb
+*.asv
+.ipynb_checkpoints/*
