@@ -6,3 +6,5 @@
 .ipynb_checkpoints/part3_eof_analysis_of_data-checkpoint.ipynb
 *.asv
 .ipynb_checkpoints/*
+dtwhaclustering.egg-info
+upload_pypi.txt
