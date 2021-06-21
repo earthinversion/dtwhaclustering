@@ -21,6 +21,21 @@ final_dU, final_dN, final_dE = lsqmodeling(dUU, dNN, dEE,stnlocfile="helper_file
 
 ![LSQ Model](https://raw.githubusercontent.com/earthinversion/DTW-based-Hierarchical-Clustering/master/images/time_series_SLNP_U.png?token=ADNOWX6QYC7CK3FDFECN4X3AZSOIW)
 
+### Plot station map
+```
+from dtwhaclustering import plot_stations
+plot_stations.plot_station_map(station_data = 'helper_files/selected_stations_info.txt', outfig=f'{outloc}/station_map.pdf')
+```
+
+### Plot linear trend
+```
+slopeFile=f'stn_slope_res_U.txt'
+df = pd.read_csv(slopeFile, names=['stn','lon','lat','slope'], delimiter='\s+')
+plot_linear_trend_on_map(df, outfig=f"Maps/slope-plot_U.pdf")
+```
+
+__Note:__ `slopeFile` is obtained from `lsqmodeling`.
+
 ## License
 © 2021 Utpal Kumar
 

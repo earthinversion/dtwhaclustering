@@ -56,13 +56,16 @@ class dtw_signal_pairs:
         '''
         self.s1 = np.array(s1, dtype=np.double)
         self.s2 = np.array(s2, dtype=np.double)
+        if (self.s1.shape[0] == 0) or (self.s2.shape[0] == 0):
+            raise ValueError(
+                f"Empty time series array {self.s1.shape[0]} & {self.s2.shape[0]}")
         self.labels = labels
 
-    def plot_signals(self, figname=None):
+    def plot_signals(self, figname=None, figsize=(12, 6)):
         '''
         Plot the signals
         '''
-        fig, ax = plt.subplots(2, 1)
+        fig, ax = plt.subplots(2, 1, figsize=figsize)
         ax[0].plot(self.s1, color="C0", lw=1)
         ax[0].set_ylabel(self.labels[0], fontsize=kwargs_default['fontsize'])
 
@@ -114,7 +117,7 @@ class dtw_signal_pairs:
 
         return path
 
-    def plot_warping_path(self, figname=None):
+    def plot_warping_path(self, figname=None, figsize=(12, 6)):
         '''
         Plot the signals with the warping paths
         '''
@@ -125,7 +128,8 @@ class dtw_signal_pairs:
             self.s1, self.s2, self.compute_warping_path())
         ax[0].set_ylabel(self.labels[0], fontsize=kwargs_default['fontsize'])
         ax[1].set_ylabel(self.labels[1], fontsize=kwargs_default['fontsize'])
-
+        fig.set_figwidth(figsize[0])
+        fig.set_figheight(figsize[1])
         if figname:
             plt.savefig(figname, bbox_inches='tight')
             plt.close()
@@ -150,9 +154,9 @@ class dtw_signal_pairs:
         return fig, ax
 
 
-def plot_signals(matrix, labels=[], figname=None, plotpdf=True):
+def plot_signals(matrix, labels=[], figname=None, plotpdf=True, figsize=kwargs_default['figsize']):
     fig, ax = plt.subplots(
-        nrows=matrix.shape[0], sharex=True, figsize=kwargs_default['figsize'])
+        nrows=matrix.shape[0], sharex=True, figsize=figsize)
     _labels = []
     for i in range(matrix.shape[0]):
         ax[i].plot(matrix[i, :], color=f"C{i}")
