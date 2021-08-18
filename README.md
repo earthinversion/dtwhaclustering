@@ -36,6 +36,11 @@ plot_linear_trend_on_map(df, outfig=f"Maps/slope-plot_U.pdf")
 
 __Note:__ `slopeFile` is obtained from `lsqmodeling`.
 
+##
+
+## References
+1. Kumar, U., Chao, B.F., Chang, E.T.-Y.Y., 2020. What Causes the Common‐Mode Error in Array GPS Displacement Fields: Case Study for Taiwan in Relation to Atmospheric Mass Loading. Earth Sp. Sci. 0–2. https://doi.org/10.1029/2020ea001159
+
 ## License
 © 2021 Utpal Kumar
 
