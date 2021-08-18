@@ -8,3 +8,6 @@
 .ipynb_checkpoints/*
 dtwhaclustering.egg-info
 upload_pypi.txt
+.eggs/
+build/
+dist/
