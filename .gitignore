@@ -9,7 +9,6 @@
 dtwhaclustering.egg-info
 upload_pypi.txt
 .eggs/
-build/
 dist/
 dtwhaclustering.egg-info/
 docs2/

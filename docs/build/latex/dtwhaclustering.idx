@@ -1,0 +1,49 @@
+\indexentry{module@\spxentry{module}!dtwhaclustering@\spxentry{dtwhaclustering}|hyperpage}{1}
+\indexentry{dtwhaclustering@\spxentry{dtwhaclustering}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{module@\spxentry{module}!dtwhaclustering.analysis\_support@\spxentry{dtwhaclustering.analysis\_support}|hyperpage}{5}
+\indexentry{dtwhaclustering.analysis\_support@\spxentry{dtwhaclustering.analysis\_support}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{dec2dt() (in module dtwhaclustering.analysis\_support)@\spxentry{dec2dt()}\spxextra{in module dtwhaclustering.analysis\_support}|hyperpage}{5}
+\indexentry{dec2dt\_scalar() (in module dtwhaclustering.analysis\_support)@\spxentry{dec2dt\_scalar()}\spxextra{in module dtwhaclustering.analysis\_support}|hyperpage}{5}
+\indexentry{toYearFraction() (in module dtwhaclustering.analysis\_support)@\spxentry{toYearFraction()}\spxextra{in module dtwhaclustering.analysis\_support}|hyperpage}{5}
+\indexentry{module@\spxentry{module}!dtwhaclustering.plot\_linear\_trend@\spxentry{dtwhaclustering.plot\_linear\_trend}|hyperpage}{7}
+\indexentry{dtwhaclustering.plot\_linear\_trend@\spxentry{dtwhaclustering.plot\_linear\_trend}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{compute\_interpolation() (in module dtwhaclustering.plot\_linear\_trend)@\spxentry{compute\_interpolation()}\spxextra{in module dtwhaclustering.plot\_linear\_trend}|hyperpage}{7}
+\indexentry{plot\_linear\_trend\_on\_map() (in module dtwhaclustering.plot\_linear\_trend)@\spxentry{plot\_linear\_trend\_on\_map()}\spxextra{in module dtwhaclustering.plot\_linear\_trend}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!dtwhaclustering.leastSquareModeling@\spxentry{dtwhaclustering.leastSquareModeling}|hyperpage}{9}
+\indexentry{dtwhaclustering.leastSquareModeling@\spxentry{dtwhaclustering.leastSquareModeling}!module@\spxentry{module}|hyperpage}{9}
+\indexentry{LSQmodules (class in dtwhaclustering.leastSquareModeling)@\spxentry{LSQmodules}\spxextra{class in dtwhaclustering.leastSquareModeling}|hyperpage}{9}
+\indexentry{compute\_lsq() (dtwhaclustering.leastSquareModeling.LSQmodules method)@\spxentry{compute\_lsq()}\spxextra{dtwhaclustering.leastSquareModeling.LSQmodules method}|hyperpage}{9}
+\indexentry{jump() (dtwhaclustering.leastSquareModeling.LSQmodules method)@\spxentry{jump()}\spxextra{dtwhaclustering.leastSquareModeling.LSQmodules method}|hyperpage}{9}
+\indexentry{lsqmodeling() (in module dtwhaclustering.leastSquareModeling)@\spxentry{lsqmodeling()}\spxextra{in module dtwhaclustering.leastSquareModeling}|hyperpage}{9}
+\indexentry{module@\spxentry{module}!dtwhaclustering.dtw\_analysis@\spxentry{dtwhaclustering.dtw\_analysis}|hyperpage}{11}
+\indexentry{dtwhaclustering.dtw\_analysis@\spxentry{dtwhaclustering.dtw\_analysis}!module@\spxentry{module}|hyperpage}{11}
+\indexentry{dtw\_clustering (class in dtwhaclustering.dtw\_analysis)@\spxentry{dtw\_clustering}\spxextra{class in dtwhaclustering.dtw\_analysis}|hyperpage}{11}
+\indexentry{compute\_cluster() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{compute\_cluster()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{compute\_cut\_off\_inconsistency() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{compute\_cut\_off\_inconsistency()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{compute\_dendrogram() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{compute\_dendrogram()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{compute\_distance\_accl() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{compute\_distance\_accl()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{compute\_distance\_matrix() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{compute\_distance\_matrix()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{get\_linkage() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{get\_linkage()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{optimum\_cluster\_elbow() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{optimum\_cluster\_elbow()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{plot\_cluster\_geomap() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_cluster\_geomap()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{11}
+\indexentry{plot\_cluster\_geomap\_interpolated() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_cluster\_geomap\_interpolated()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{12}
+\indexentry{plot\_cluster\_xymap() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_cluster\_xymap()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{12}
+\indexentry{plot\_dendrogram() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_dendrogram()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{13}
+\indexentry{plot\_hac\_iteration() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_hac\_iteration()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{13}
+\indexentry{plot\_optimum\_cluster() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_optimum\_cluster()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{13}
+\indexentry{plot\_polar\_dendrogram() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_polar\_dendrogram()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{13}
+\indexentry{plot\_signals() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{plot\_signals()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{13}
+\indexentry{significance\_test() (dtwhaclustering.dtw\_analysis.dtw\_clustering method)@\spxentry{significance\_test()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}|hyperpage}{13}
+\indexentry{dtw\_signal\_pairs (class in dtwhaclustering.dtw\_analysis)@\spxentry{dtw\_signal\_pairs}\spxextra{class in dtwhaclustering.dtw\_analysis}|hyperpage}{13}
+\indexentry{compute\_distance() (dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method)@\spxentry{compute\_distance()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}|hyperpage}{13}
+\indexentry{compute\_warping\_path() (dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method)@\spxentry{compute\_warping\_path()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}|hyperpage}{13}
+\indexentry{plot\_matrix() (dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method)@\spxentry{plot\_matrix()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}|hyperpage}{14}
+\indexentry{plot\_signals() (dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method)@\spxentry{plot\_signals()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}|hyperpage}{14}
+\indexentry{plot\_warping\_path() (dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method)@\spxentry{plot\_warping\_path()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}|hyperpage}{14}
+\indexentry{noise\_robustness\_test() (in module dtwhaclustering.dtw\_analysis)@\spxentry{noise\_robustness\_test()}\spxextra{in module dtwhaclustering.dtw\_analysis}|hyperpage}{14}
+\indexentry{plot\_cluster() (in module dtwhaclustering.dtw\_analysis)@\spxentry{plot\_cluster()}\spxextra{in module dtwhaclustering.dtw\_analysis}|hyperpage}{14}
+\indexentry{plot\_signals() (in module dtwhaclustering.dtw\_analysis)@\spxentry{plot\_signals()}\spxextra{in module dtwhaclustering.dtw\_analysis}|hyperpage}{14}
+\indexentry{shuffle\_signals() (in module dtwhaclustering.dtw\_analysis)@\spxentry{shuffle\_signals()}\spxextra{in module dtwhaclustering.dtw\_analysis}|hyperpage}{14}
+\indexentry{module@\spxentry{module}!dtwhaclustering.plot\_stations@\spxentry{dtwhaclustering.plot\_stations}|hyperpage}{15}
+\indexentry{dtwhaclustering.plot\_stations@\spxentry{dtwhaclustering.plot\_stations}!module@\spxentry{module}|hyperpage}{15}
+\indexentry{plot\_station\_map() (in module dtwhaclustering.plot\_stations)@\spxentry{plot\_station\_map()}\spxextra{in module dtwhaclustering.plot\_stations}|hyperpage}{15}

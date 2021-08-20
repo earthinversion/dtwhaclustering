@@ -1,0 +1,50 @@
+dtwhaclustering package
+=======================
+
+dtwhaclustering.analysis\_support module
+----------------------------------------
+
+.. automodule:: dtwhaclustering.analysis_support
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dtwhaclustering.dtw\_analysis module
+------------------------------------
+
+.. automodule:: dtwhaclustering.dtw_analysis
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dtwhaclustering.leastSquareModeling module
+------------------------------------------
+
+.. automodule:: dtwhaclustering.leastSquareModeling
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dtwhaclustering.plot\_linear\_trend module
+------------------------------------------
+
+.. automodule:: dtwhaclustering.plot_linear_trend
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dtwhaclustering.plot\_stations module
+-------------------------------------
+
+.. automodule:: dtwhaclustering.plot_stations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: dtwhaclustering
+   :members:
+   :undoc-members:
+   :show-inheritance:
