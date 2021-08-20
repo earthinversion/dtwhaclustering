@@ -13,3 +13,5 @@ build/
 dist/
 dtwhaclustering.egg-info/
 docs2/
+upload_pypi.sh
+build_docs.sh
