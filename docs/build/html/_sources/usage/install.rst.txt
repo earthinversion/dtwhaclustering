@@ -1,10 +1,6 @@
 Installation
 ============
 
-:author: Utpal Kumar
-:date: 2021/08
-:copyright: 2021, Institute of Earth Sciences, Academia Sinica.
-
 Requirements
 ------------
 #. ``dtaidistance``: For computing DTW distance

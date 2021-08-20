@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.20)  20 AUG 2021 08:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.20)  20 AUG 2021 09:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -772,8 +772,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 Chapter 1.
-LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
-03.
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 8
+9.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 ) [1
@@ -787,15 +787,15 @@ Chapter 2.
 ]
 Chapter 3.
 LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
-(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 175.
+(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 161.
 LaTeX Font Info:    Font shape `T1/txtt/m/it' in size <10> not available
-(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 181.
+(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 167.
 [5] [6
 
 ]
 Chapter 4.
 LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 2
-56.
+42.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
 File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
 ) [7] [8]
@@ -803,7 +803,7 @@ Chapter 5.
 [9
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 483--485
+Underfull \hbox (badness 10000) in paragraph at lines 469--471
 []\T1/txtt/bx/n/10 stnlocfile \T1/qtm/m/n/10 (\T1/txtt/m/sl/10 str\T1/qtm/m/n/1
 0 ) ^^U File con-tain-ing the sta-tion lo-ca-tion info, e.g.,
  []
@@ -811,7 +811,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 483--485
 [10]
 Chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--555
+Underfull \hbox (badness 10000) in paragraph at lines 539--541
 []\T1/txtt/bx/n/10 t \T1/qtm/m/n/10 (\T1/txtt/m/sl/10 scalar\T1/qtm/m/n/10 ) ^^
 U thresh-old to ap-ply when form-ing flat clus-ters. See
  []
@@ -821,7 +821,7 @@ U thresh-old to ap-ply when form-ing flat clus-ters. See
 ] [12] [13] [14]
 Chapter 7.
 LaTeX Font Info:    Trying to load font information for TS1+txtt on input line 
-1073.
+1059.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ts1txtt.fd
 File: ts1txtt.fd 2000/12/15 v3.1
 ) [15
@@ -1140,15 +1140,15 @@ twha-clus-ter-
 [22
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1111.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1111.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1097.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1097.
  (./dtwhaclustering.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1111.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1111.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1097.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1097.
 
 Package rerunfilecheck Info: File `dtwhaclustering.out' has not changed.
 (rerunfilecheck)             Checksum: 67D383E8556AED9A7D2D77E5C29055F5;2116.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1111.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1097.
  ) 
 Here is how much of TeX's memory you used:
  13898 strings out of 480608
@@ -1172,7 +1172,7 @@ c/txfonts/t1xbtt.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txf
 onts/t1xtt.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t
 1xtt.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/tcxtt.p
 fb>
-Output written on dtwhaclustering.pdf (26 pages, 217776 bytes).
+Output written on dtwhaclustering.pdf (26 pages, 217643 bytes).
 PDF statistics:
  360 PDF objects out of 1000 (max. 8388607)
  311 compressed objects within 4 object streams

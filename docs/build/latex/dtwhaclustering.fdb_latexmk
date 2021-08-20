@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex dtwhaclustering.idx"] 1629420484 "dtwhaclustering.idx" "dtwhaclustering.ind" "dtwhaclustering" 1629420487
-  "dtwhaclustering.idx" 1629420487 8507 cf353c6a66a3a88a8c2d7e2189f20fdc "pdflatex"
+["makeindex dtwhaclustering.idx"] 1629420484 "dtwhaclustering.idx" "dtwhaclustering.ind" "dtwhaclustering" 1629421315
+  "dtwhaclustering.idx" 1629421315 8507 cf353c6a66a3a88a8c2d7e2189f20fdc "pdflatex"
   (generated)
   "dtwhaclustering.ilg"
   "dtwhaclustering.ind"
-["pdflatex"] 1629420486 "dtwhaclustering.tex" "dtwhaclustering.pdf" "dtwhaclustering" 1629420487
+["pdflatex"] 1629421314 "dtwhaclustering.tex" "dtwhaclustering.pdf" "dtwhaclustering" 1629421315
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc" 1529098226 2457 aaabbccba4df2a7f7371410ee4e075a3 ""
   "/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1529098226 3124 3813fd4c981d99822890a2861b0d274c ""
   "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -141,13 +141,13 @@
   "/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1586288239 4811913 0be9a7e86c70a26e5e3042966bcd7097 ""
   "/usr/local/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1616217766 2432454 6e5afb555c0ab649188e41a08cd56f49 ""
   "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
-  "dtwhaclustering.aux" 1629420487 10783 bb5f36939074ded4e8108c5ca5552d84 "pdflatex"
+  "dtwhaclustering.aux" 1629421315 10783 bb5f36939074ded4e8108c5ca5552d84 "pdflatex"
   "dtwhaclustering.ind" 1629420485 5889 909d9d503c991fd61bffacf0089050ec "makeindex dtwhaclustering.idx"
-  "dtwhaclustering.out" 1629420487 2116 67d383e8556aed9a7d2d77e5c29055f5 "pdflatex"
-  "dtwhaclustering.tex" 1629420482 69648 0a5151cb123644f7ef6f516b5dc0a230 ""
-  "dtwhaclustering.toc" 1629420487 991 72d2834932ebdd7a72b6ffca12d7895d "pdflatex"
+  "dtwhaclustering.out" 1629421315 2116 67d383e8556aed9a7d2d77e5c29055f5 "pdflatex"
+  "dtwhaclustering.tex" 1629421313 69372 11dbce5d3203706d82473f5ee87ddaca ""
+  "dtwhaclustering.toc" 1629421315 991 72d2834932ebdd7a72b6ffca12d7895d "pdflatex"
   "sphinx.sty" 1623164921 13210 1fc7fddaf4a9dba457504448864afe1f ""
-  "sphinxhighlight.sty" 1629420482 6679 76d10c62e0f0661410b46f5db6118e26 ""
+  "sphinxhighlight.sty" 1629421313 6679 76d10c62e0f0661410b46f5db6118e26 ""
   "sphinxlatexadmonitions.sty" 1623164921 6238 2d867d769abf3f72abc17ef52adff78b ""
   "sphinxlatexgraphics.sty" 1623164921 4840 a9578332b6f3b35e198751fb632c9b79 ""
   "sphinxlatexindbibtoc.sty" 1623164921 2066 b93f8504d02f6337fde3074b179de55e ""
@@ -161,14 +161,14 @@
   "sphinxlatexstyletext.sty" 1623164921 5771 a578900e23c0331bf3e01507feb96320 ""
   "sphinxlatextables.sty" 1623164921 21848 2827eb0b11b99b185a8b77317d3e131c ""
   "sphinxmanual.cls" 1623164921 4236 124cd90deb92742b5d3922bfc2cd70c0 ""
-  "sphinxmessages.sty" 1629420482 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1629421313 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxoptionsgeometry.sty" 1623164921 2061 47bb34b8ed8a78823eb0c886abfb9f4d ""
   "sphinxoptionshyperref.sty" 1623164921 1093 22dd608777751296c61a93174b0f4bb8 ""
   "sphinxpackagefootnote.sty" 1623164921 13248 e2c77871396275ccf592403f8130f6f2 ""
   (generated)
-  "dtwhaclustering.toc"
-  "dtwhaclustering.idx"
   "dtwhaclustering.out"
-  "dtwhaclustering.aux"
+  "dtwhaclustering.idx"
   "dtwhaclustering.log"
+  "dtwhaclustering.aux"
+  "dtwhaclustering.toc"
   "dtwhaclustering.pdf"
