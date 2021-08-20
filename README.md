@@ -3,7 +3,7 @@
 Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
 
 ## Documentation
-Installation and usage information can be obtained from the documentation: [dtwhaclustering.pdf](/docs/build/latex/dtwhaclustering.pdf)
+Installation and usage information can be obtained from the documentation: [dtwhaclustering.pdf](docs/build/latex/dtwhaclustering.pdf)
 
 ## Details
 
