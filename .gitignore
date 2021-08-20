@@ -12,3 +12,4 @@ upload_pypi.txt
 build/
 dist/
 dtwhaclustering.egg-info/
+docs2/

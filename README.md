@@ -2,6 +2,9 @@
 
 Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
 
+## Documentation
+Installation and usage information can be obtained from the documentation: [dtwhaclustering.pdf](/docs/build/latex/dtwhaclustering.pdf)
+
 ## Details
 
 This package include codes for processing the GPS displacement data including least-square modelling for trend, co-seismic jumps, 
@@ -36,7 +39,41 @@ plot_linear_trend_on_map(df, outfig=f"Maps/slope-plot_U.pdf")
 
 __Note:__ `slopeFile` is obtained from `lsqmodeling`.
 
-##
+## Dynamic Time Warping Analysis
+
+```
+from dtwhaclustering.dtw_analysis import dtw_signal_pairs, dtw_clustering
+import numpy as np
+from scipy import signal
+import matplotlib.pyplot as plt
+
+np.random.seed(0)
+# sampling parameters
+fs = 100   # sampling rate, in Hz
+T = 1      # duration, in seconds
+N = T * fs  # duration, in samples
+
+# time variable
+t = np.linspace(0, T, N)
+
+SNR = 0.2 #noise
+
+XX0 = np.sin(2 * np.pi * t * 7+np.pi/2) #+ np.random.randn(1, N) * SNR
+XX1 = signal.sawtooth(2 * np.pi * t * 5+np.pi/2) #+ np.random.randn(1, N) * SNR
+# XX1 = np.abs(np.cos(2 * np.pi * t * 3)) - 0.5
+s1, s2 = XX0, XX1
+
+dtwsig = dtw_signal_pairs(s1, s2, labels=['S1', 'S2'])
+
+dtwsig.plot_signals()
+plt.show()
+```
+
+
+```
+dtwsig.plot_matrix(windowfrac=0.6, psi=None) #Only allow for shifts up to 60% of the minimum signal length away from the two diagonals.
+plt.show()
+```
 
 ## References
 1. Kumar, U., Chao, B.F., Chang, E.T.-Y.Y., 2020. What Causes the Common‐Mode Error in Array GPS Displacement Fields: Case Study for Taiwan in Relation to Atmospheric Mass Loading. Earth Sp. Sci. 0–2. https://doi.org/10.1029/2020ea001159

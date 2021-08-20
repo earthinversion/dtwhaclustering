@@ -1,11 +1,7 @@
 """
-dtwhaclustering.analysis_support
---------------------------------
-DTW HAC analysis support
+DTW HAC analysis support functions (`analysis_support`)
 
-:author: Utpal Kumar
-:date: 2021/06
-:copyright: Copyright 2021 Institute of Earth Sciences, Academia Sinica.
+:author: Utpal Kumar, Institute of Earth Sciences, Academia Sinica
 """
 
 import time
@@ -18,7 +14,8 @@ def dec2dt(start):
 
     :param start: list or numpy array of decimal year values e.g., [2020.001]
     :type start: list
-    :return: list
+    :return: date-time type array
+    :rtype: list
     """
     results = []
     for st in start:
@@ -35,10 +32,11 @@ def dec2dt(start):
 
 def dec2dt_scalar(st):
     """
-    Convert the decimal type time array to the date-time type array
+    Convert the decimal type time value to the date-time type 
 
     :param st: scalar decimal year value e.g., 2020.001
     :return: time as datetime type
+    :rtype: str
     """
     year = int(st)
     rem = st - year
@@ -55,6 +53,7 @@ def toYearFraction(date):
 
     :param date: the date-time type object
     :return: decimal year
+    :rtype: float
     """
 
     def sinceEpoch(date):  # returns seconds since epoch

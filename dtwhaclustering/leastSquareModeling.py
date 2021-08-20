@@ -1,11 +1,7 @@
 """
-dtwhaclustering.leastSquareModeling
-------------------------------------
 Least square modeling of GPS displacements for seasonality, tidal, co-seismic jumps.
 
-:author: Utpal Kumar
-:date: 2021/06
-:copyright: Copyright 2021 Institute of Earth Sciences, Academia Sinica.
+:author: Utpal Kumar, Institute of Earth Sciences, Academia Sinica
 """
 
 
@@ -13,7 +9,7 @@ import pandas as pd
 import numpy as np
 from scipy.optimize import least_squares
 import matplotlib.pyplot as plt
-from analysis_support import toYearFraction
+from .analysis_support import toYearFraction
 import matplotlib
 from tqdm import tqdm
 # from tqdm.notebook import tqdm
@@ -35,16 +31,22 @@ plt.style.use('ggplot')
 
 
 class LSQmodules:
-    def __init__(self, dUU, sel_eq_file=None, station_loc_file="helper_files/stn_loc.txt", comp="U", figdir="LSQOut", periods=(13.6608, 14.7653, 27.5546, 182.62, 365.26, 18.6)):
+    def __init__(self, dUU, sel_eq_file=None, station_loc_file="helper_files/stn_loc.txt", comp="U", figdir="LSQOut", periods=(13.6608, 14.7653, 27.5546, 182.62, 365.26, 6793.836)):
         '''
         Perform least square modeling of the time series in dUU
 
         :param dUU: Pandas dataframe containing the time series for the modeling. Should have time information as pandas datetime format in the index
+        :type dUU: pandas.DataFrame
         :param sel_eq_file: File containing the earthquake origin times e.g., `2009,1,15` with header info, e.g. `year_val,month_val,date_val`
+        :type sel_eq_file: str
         :param station_loc_file: File containing the station location info, e.g., `DAWU,120.89004,22.34059`, with header `stn,lon,lat`
+        :type station_loc_file: str
         :param comp: Component name of the data provided
+        :type comp: str
         :param figdir: Output directory for the figures, if requested
-        :param periods: Periods for the tidal and seasonal signals. e.g., (13.6608, 14.7653, 27.5546, 182.62, 365.26, 18.6). All in days except 18.6 years.
+        :type figdir: str
+        :param periods: Periods for the tidal and seasonal signals. e.g., (13.6608, 14.7653, 27.5546, 182.62, 365.26, 18.6). All in days, 6793.836 days == 18.6 years.
+        :type periods: tuple
         '''
         self.dUU = dUU
         self.comp = comp
@@ -56,13 +58,13 @@ class LSQmodules:
         self.xval = np.array(year)
 
         # Periods in year for removal of tidal and seasonal signals
-        yr = periods[4]
+        yr = 365.26
         P1 = periods[0]/yr
         P2 = periods[1]/yr
         P3 = periods[2]/yr
         P4 = periods[3]/yr
         P5 = yr/yr
-        P6 = periods[5]  # in year
+        P6 = periods[5]/yr  # in year
         self.periods = np.array([pp for pp in [P1, P2, P3, P4, P5, P6]])
         if sel_eq_file and os.path.exists(sel_eq_file):
             # selected earthquakes for the removal using least squares method
@@ -106,6 +108,7 @@ class LSQmodules:
         heaviside step function
 
         :param t: time data
+        :type t: list
         :param t0: earthquake origin time
         '''
         o = np.zeros(len(t))
@@ -118,10 +121,15 @@ class LSQmodules:
         Compute the least-squares model using multithreading
 
         :param plot_results: plot the final results
+        :type plot_results: boolean
         :param remove_trend: return the time series after removing the linear trend 
+        :type remove_trend: boolean
         :param remove_seasonality: return the time series after removing the seasonal signals
+        :type remove_seasonality: boolean
         :param remove_jumps: return the time series after removing the co-seismic jumps
+        :type remove_jumps: boolean
         :param plotformat: plot format of the output figure, e.g. "png". "pdf" by default.
+        :type plotformat: str
         '''
         def all_jumps(t, *cc):
             '''
@@ -291,15 +299,32 @@ def lsqmodeling(dUU, dNN, dEE, stnlocfile,  plot_results=True, remove_trend=Fals
     Least square modeling for the three component time series
 
     :param dUU: Vertical component pandas dataframe time series
+    :type dUU: pandas.DataFrame
     :param dNN: North component pandas dataframe time series
+    :type dNN: pandas.DataFrame
     :param dEE: East component pandas dataframe time series
+    :type dEE: pandas.DataFrame
     :param plot_results: plot the final results
+    :type plot_results: boolean
     :param remove_trend: return the time series after removing the linear trend 
+    :type remove_trend: boolean
     :param remove_seasonality: return the time series after removing the seasonal signals
+    :type remove_seasonality: boolean
     :param remove_jumps: return the time series after removing the co-seismic jumps
+    :type remove_jumps: boolean
     :param sel_eq_file: File containing the earthquake origin times e.g., `2009,1,15` with header info, e.g. `year_val,month_val,date_val`
+    :type sel_eq_file: str
     :param stnlocfile: File containing the station location info, e.g., `DAWU,120.89004,22.34059`, with header `stn,lon,lat`
+    :type stnlocfile: str
     :return: Pandas dataframe corresponding to the vertical, north and east components e.g., final_dU, final_dN, final_dE 
+    :rtype: pandas.DataFrame, pandas.DataFrame, pandas.DataFrame
+
+
+    .. code-block:: python
+
+        from dtwhaclustering.leastSquareModeling import lsqmodeling
+        final_dU, final_dN, final_dE = lsqmodeling(dUU, dNN, dEE,stnlocfile="helper_files/stn_loc.txt",  plot_results=True, remove_trend=False, remove_seasonality=True, remove_jumps=False)
+
     '''
     ################################################
     final_dU, final_dN, final_dE = None, None, None

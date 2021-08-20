@@ -1,11 +1,7 @@
 """
-dtwhaclustering.plot_stations
-----------------------------------
-DTW HAC analysis support
+Plot topographic station map
 
-:author: Utpal Kumar
-:date: 2021/06
-:copyright: Copyright 2021 Institute of Earth Sciences, Academia Sinica.
+:author: Utpal Kumar, Institute of Earth Sciences, Academia Sinica
 """
 
 import numpy as np
@@ -17,7 +13,9 @@ import os
 def plot_station_map(station_data, minlon=None, maxlon=None, minlat=None, maxlat=None,
                      outfig='station_map.png', datacolor='blue', topo_data="@earth_relief_15s",
                      cmap='etopo1', projection='M4i',
-                     datalabel='Stations', markerstyle="i10p"):
+                     datalabel='Stations', markerstyle="i10p",
+                     random_station_label=False, stn_labels=None, justify='left',
+                     labelfont="6p,Helvetica-Bold,black", offset="5p/-5p", stn_labels_color='red', rand_justify=False):
     '''
     Plot topographic station map using PyGMT
 
@@ -33,6 +31,13 @@ def plot_station_map(station_data, minlon=None, maxlon=None, minlat=None, maxlat
     :param datalabel: Label for the data
     :param markerstyle: Style of the marker. Inverted triangle of size 10p by default.
     :param outfig: Output figure path
+    :param random_station_label: int. label randomly selected `random_station_label` of stations 
+
+    .. code-block:: python
+
+        from dtwhaclustering import plot_stations
+        plot_stations.plot_station_map(station_data = 'helper_files/selected_stations_info.txt', outfig=f'{outloc}/station_map.pdf')
+
     '''
     df = pd.read_csv(station_data)
     # print(df.head())
@@ -68,26 +73,60 @@ def plot_station_map(station_data, minlon=None, maxlon=None, minlat=None, maxlat
         shorelines=True,
         frame=True
     )
-    leftjustify, rightoffset = "TL", "5p/-5p"
-    rightjustify, leftoffset = "TR", "-8p/-1p"
-    for stn, lon, lat in zip(df["stn"].values, df["lon"].values, df["lat"].values):
+
+    def get_justify(justify):
+        if justify == 'left':
+            justifystr = "TL"
+        else:
+            justifystr = "TR"
+        return justifystr
+
+    justifystr = get_justify(justify)
+
+    stnvalues = df["stn"].values
+    lonvalues = df["lon"].values
+    latvalues = df["lat"].values
+    for istn in np.arange(0, len(stnvalues)):
+        if stn_labels is not None and stnvalues[istn] in stn_labels:
+            color = stn_labels_color
+        else:
+            color = datacolor
         # plot east coast stations in color
         fig.plot(
-            x=lon,
-            y=lat,
+            x=lonvalues[istn],
+            y=latvalues[istn],
             style=markerstyle,
-            color=datacolor,
+            color=color,
             pen="black",
         )
+    if random_station_label:
+        staiter = np.random.randint(
+            0, len(stnvalues), size=(random_station_label,))
+
+    else:
+        staiter = np.arange(0, len(stnvalues))
+
+    for istn in staiter:
+        # print(istn, stnvalues[istn])
+        if stn_labels is not None and stnvalues[istn] not in stn_labels:
+            continue
+
+        if rand_justify:
+            if np.random.rand() > 0.5:
+                justifystr = get_justify(justify='left')
+                offset = "5p/-5p"
+            else:
+                justifystr = get_justify(justify='right')
+                offset = "-10p/-1p"
         fig.text(
-            x=lon,
-            y=lat,
-            text=stn,
-            justify=leftjustify,
+            x=lonvalues[istn],
+            y=latvalues[istn],
+            text=stnvalues[istn],
+            justify=justifystr,
             angle=0,
-            offset=rightoffset,
+            offset=offset,
             fill="white",
-            font=f"6p,Helvetica-Bold,black",
+            font=labelfont,
         )
 
     fig.plot(
