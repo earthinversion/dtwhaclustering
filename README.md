@@ -5,6 +5,8 @@ Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clusterin
 ## Documentation
 Installation and usage information can be obtained from the documentation: [dtwhaclustering.pdf](docs/build/latex/dtwhaclustering.pdf)
 
+Complete documentation at: (dtwhaclustering docs)[https://dtwhaclustering.readthedocs.io/en/latest/]
+
 ## Details
 
 This package include codes for processing the GPS displacement data including least-square modelling for trend, co-seismic jumps, 
