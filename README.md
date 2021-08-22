@@ -5,7 +5,7 @@ Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clusterin
 ## Documentation
 Installation and usage information can be obtained from the documentation: [dtwhaclustering.pdf](docs/build/latex/dtwhaclustering.pdf)
 
-Complete documentation at: (dtwhaclustering docs)[https://dtwhaclustering.readthedocs.io/en/latest/]
+Complete documentation at: [dtwhaclustering docs](https://dtwhaclustering.readthedocs.io/en/latest/)
 
 ## Details
 
