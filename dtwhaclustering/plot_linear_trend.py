@@ -90,6 +90,28 @@ def plot_linear_trend_on_map(df, maplonrange=(120., 122.1), maplatrange=(21.8, 2
     :param markerstyle: marker style and size
     :type markerstyle: str
     :return: None
+
+
+    .. code-block:: python
+
+        kwargs={
+            "labelfont":"16p,Helvetica-Bold,black",
+            "justify":'right',
+            "offset":"-10p/-1p",
+            "maplonrange":(119.8, 122.1), 
+            "maplatrange":(21.8, 25.6),
+            'markerstyle': 'i16p',
+            'rand_justify':True,
+            'water_color': 'gray'
+        }
+        comp = "U"
+        all_labels = {}
+        all_labels[comp] = ['PKGM','YMSM', 'VR02', 'HUWE', 'LNCH','CHEN','TUNH']
+
+        slopeFile=f'stn_slope_res_{comp}.txt'
+        df = pd.read_csv(slopeFile, names=['stn','lon','lat','slope'], delimiter='\s+')
+        figname = f"{outloc}/slope-plot_{comp}.png"
+        plot_linear_trend_on_map(df, outfig=figname,stn_labels=all_labels[comp], **kwargs)
     '''
     da, cmapExtreme = compute_interpolation(
         df, lonrange=intrp_lonrange, latrange=intrp_latrange, step=step)

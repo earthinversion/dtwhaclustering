@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.20)  20 AUG 2021 09:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.3.20)  22 AUG 2021 14:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -772,70 +772,166 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ]
 Chapter 1.
-LaTeX Font Info:    Trying to load font information for T1+txtt on input line 8
-9.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/t1txtt.fd
-File: t1txtt.fd 2000/12/15 v3.1
-) [1
+[1
 
 ] [2
 
 ]
 Chapter 2.
-[3] [4
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 1
+09.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/t1txtt.fd
+File: t1txtt.fd 2000/12/15 v3.1
+) [3] [4
 
 ]
 Chapter 3.
-LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
-(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 161.
 LaTeX Font Info:    Font shape `T1/txtt/m/it' in size <10> not available
-(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 167.
-[5] [6
+(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 155.
+LaTeX Font Info:    Trying to load font information for TS1+txtt on input line 
+174.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ts1txtt.fd
+File: ts1txtt.fd 2000/12/15 v3.1
+)
+<fig_s1_s2.png, id=197, 739.563pt x 357.7365pt>
+File: fig_s1_s2.png Graphic file (type png)
+<use fig_s1_s2.png>
+Package pdftex.def Info: fig_s1_s2.png  used on input line 179.
+(pdftex.def)             Requested size: 469.76399pt x 227.22565pt.
+ [5]
+<warping_path_s1_s2.pdf, id=205, 892.5094pt x 425.79701pt>
+File: warping_path_s1_s2.pdf Graphic file (type pdf)
+<use warping_path_s1_s2.pdf>
+Package pdftex.def Info: warping_path_s1_s2.pdf  used on input line 195.
+(pdftex.def)             Requested size: 469.74565pt x 224.11201pt.
+LaTeX Font Info:    Font shape `T1/txtt/b/n' in size <10> not available
+(Font)              Font shape `T1/txtt/bx/n' tried instead on input line 198.
+ [6 <./fig_s1_s2.png> <./warping_path_s1_s2.pdf>]
+<warping_matrix.png, id=224, 677.6517pt x 612.6087pt>
+File: warping_matrix.png Graphic file (type png)
+<use warping_matrix.png>
+Package pdftex.def Info: warping_matrix.png  used on input line 202.
+(pdftex.def)             Requested size: 469.7723pt x 424.6728pt.
 
-]
+Overfull \vbox (2.61787pt too high) detected at line 228
+ []
+
+[7 <./warping_matrix.png>]
+<base_functions.pdf, id=230, 627.36887pt x 358.80855pt>
+File: base_functions.pdf Graphic file (type pdf)
+<use base_functions.pdf>
+Package pdftex.def Info: base_functions.pdf  used on input line 230.
+(pdftex.def)             Requested size: 469.76923pt x 268.68417pt.
+ [8 <./base_functions.pdf>]
 Chapter 4.
-LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 2
-42.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
-File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
-) [7] [8]
-Chapter 5.
+File: base_functions.pdf Graphic file (type pdf)
+<use base_functions.pdf>
+Package pdftex.def Info: base_functions.pdf  used on input line 289.
+(pdftex.def)             Requested size: 469.76923pt x 268.68417pt.
 [9
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 469--471
+<noise_copies_signals.png, id=251, 649.9482pt x 1128.6165pt>
+File: noise_copies_signals.png Graphic file (type png)
+<use noise_copies_signals.png>
+Package pdftex.def Info: noise_copies_signals.png  used on input line 308.
+(pdftex.def)             Requested size: 374.5702pt x 650.4477pt.
+ [10] [11 <./noise_copies_signals.png>]
+<signals_locations.pdf, id=261, 766.35687pt x 592.36934pt>
+File: signals_locations.pdf Graphic file (type pdf)
+<use signals_locations.pdf>
+Package pdftex.def Info: signals_locations.pdf  used on input line 351.
+(pdftex.def)             Requested size: 469.75726pt x 363.11638pt.
+ [12]
+<shuffled_signals.pdf, id=266, 649.85915pt x 1128.29967pt>
+File: shuffled_signals.pdf Graphic file (type pdf)
+<use shuffled_signals.pdf>
+Package pdftex.def Info: shuffled_signals.pdf  used on input line 370.
+(pdftex.def)             Requested size: 374.62796pt x 650.45448pt.
+ [13 <./signals_locations.pdf>]
+[14 <./shuffled_signals.pdf>]
+<example_dtw_cluster.pdf, id=297, 1187.53978pt x 512.50722pt>
+File: example_dtw_cluster.pdf Graphic file (type pdf)
+<use example_dtw_cluster.pdf>
+Package pdftex.def Info: example_dtw_cluster.pdf  used on input line 380.
+(pdftex.def)             Requested size: 469.7526pt x 202.73138pt.
+<signals_cluster_xy_map.pdf, id=298, 916.01984pt x 829.76657pt>
+File: signals_cluster_xy_map.pdf Graphic file (type pdf)
+<use signals_cluster_xy_map.pdf>
+Package pdftex.def Info: signals_cluster_xy_map.pdf  used on input line 393.
+(pdftex.def)             Requested size: 469.76372pt x 425.51768pt.
+ [15 <./example_dtw_cluster.pdf>]
+<example_polar_dendro.pdf, id=316, 2342.45181pt x 2340.17084pt>
+File: example_polar_dendro.pdf Graphic file (type pdf)
+<use example_polar_dendro.pdf>
+Package pdftex.def Info: example_polar_dendro.pdf  used on input line 414.
+(pdftex.def)             Requested size: 469.73306pt x 469.27567pt.
+ [16 <./signals_cluster_xy_map.pdf>]
+<plot_hac_iteration.pdf, id=335, 621.06406pt x 502.79907pt>
+File: plot_hac_iteration.pdf Graphic file (type pdf)
+<use plot_hac_iteration.pdf>
+Package pdftex.def Info: plot_hac_iteration.pdf  used on input line 424.
+(pdftex.def)             Requested size: 469.74867pt x 380.31297pt.
+ [17 <./example_polar_dendro.pdf>]
+<optimum_clusters.pdf, id=360, 627.44728pt x 403.37952pt>
+File: optimum_clusters.pdf Graphic file (type pdf)
+<use optimum_clusters.pdf>
+Package pdftex.def Info: optimum_clusters.pdf  used on input line 431.
+(pdftex.def)             Requested size: 469.76093pt x 301.9984pt.
+ [18 <./plot_hac_iteration.pdf>] [19 <./optimum_clusters.pdf>]
+<example_euclidean_cluster.pdf, id=394, 1174.88313pt x 512.50722pt>
+File: example_euclidean_cluster.pdf Graphic file (type pdf)
+<use example_euclidean_cluster.pdf>
+Package pdftex.def Info: example_euclidean_cluster.pdf  used on input line 481.
+
+(pdftex.def)             Requested size: 469.74773pt x 204.91322pt.
+LaTeX Font Info:    Trying to load font information for TS1+qtm on input line 4
+86.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tex-gyre/ts1qtm.fd
+File: ts1qtm.fd 2009/09/25 v1.2 font definition file for TS1/qtm
+) [20 <./example_euclidean_cluster.pdf>]
+Chapter 5.
+[21
+
+] [22
+
+]
+Chapter 6.
+[23] [24]
+Chapter 7.
+[25
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 846--848
 []\T1/txtt/bx/n/10 stnlocfile \T1/qtm/m/n/10 (\T1/txtt/m/sl/10 str\T1/qtm/m/n/1
 0 ) ^^U File con-tain-ing the sta-tion lo-ca-tion info, e.g.,
  []
 
-[10]
-Chapter 6.
+[26]
+Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 539--541
+Underfull \hbox (badness 10000) in paragraph at lines 916--918
 []\T1/txtt/bx/n/10 t \T1/qtm/m/n/10 (\T1/txtt/m/sl/10 scalar\T1/qtm/m/n/10 ) ^^
 U thresh-old to ap-ply when form-ing flat clus-ters. See
  []
 
-[11
+[27
 
-] [12] [13] [14]
-Chapter 7.
-LaTeX Font Info:    Trying to load font information for TS1+txtt on input line 
-1059.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/txfonts/ts1txtt.fd
-File: ts1txtt.fd 2000/12/15 v3.1
-) [15
-
-] [16
+] [28] [29] [30] [31] [32
 
 ]
-Chapter 8.
-[17] [18
+Chapter 9.
+[33] [34]
+Chapter 10.
+[35
 
-] [19
+] [36
+
+] [37
 
 
-] (./dtwhaclustering.ind [20
+] (./dtwhaclustering.ind [38
 
 
 ]
@@ -968,194 +1064,194 @@ a-clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 62--64
 []\T1/txtt/m/n/10 LSQmodules \T1/qtm/m/n/10 (\T1/qtm/m/it/10 class in dtwha-clu
 s-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--83
+Underfull \hbox (badness 10000) in paragraph at lines 82--84
 []\T1/txtt/m/n/10 optimum_cluster_elbow() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha
 -clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--83
+Underfull \hbox (badness 10000) in paragraph at lines 82--84
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--88
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
 []\T1/txtt/m/n/10 plot_cluster() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in mod-ule dtw
 ha-clus-ter-
  []
 
-[21
+[39
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 88--90
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 []\T1/txtt/m/n/10 plot_cluster_geomap() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-c
 lus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--90
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--94
+Underfull \hbox (badness 10000) in paragraph at lines 93--95
 []\T1/txtt/m/n/10 plot_cluster_xymap() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-cl
 us-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--94
+Underfull \hbox (badness 10000) in paragraph at lines 93--95
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--96
+Underfull \hbox (badness 10000) in paragraph at lines 95--97
 []\T1/txtt/m/n/10 plot_dendrogram() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-clus-
 ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--96
+Underfull \hbox (badness 10000) in paragraph at lines 95--97
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--98
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
 []\T1/txtt/m/n/10 plot_hac_iteration() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-cl
 us-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--98
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
+Underfull \hbox (badness 10000) in paragraph at lines 101--103
 []\T1/txtt/m/n/10 plot_matrix() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-clus-ter-
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
+Underfull \hbox (badness 10000) in paragraph at lines 101--103
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_signal_pairs method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--104
+Underfull \hbox (badness 10000) in paragraph at lines 103--105
 []\T1/txtt/m/n/10 plot_optimum_cluster() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-
 clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--104
+Underfull \hbox (badness 10000) in paragraph at lines 103--105
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
 []\T1/txtt/m/n/10 plot_polar_dendrogram() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha
 -clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--108
+Underfull \hbox (badness 10000) in paragraph at lines 107--109
 []\T1/txtt/m/n/10 plot_signals() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-clus-ter
 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--108
+Underfull \hbox (badness 10000) in paragraph at lines 107--109
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--110
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
 []\T1/txtt/m/n/10 plot_signals() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-clus-ter
 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--110
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_signal_pairs method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--112
+Underfull \hbox (badness 10000) in paragraph at lines 111--113
 []\T1/txtt/m/n/10 plot_signals() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in mod-ule dtw
 ha-clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
 []\T1/txtt/m/n/10 plot_station_map() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in mod-ule
  dtwha-clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
 []\T1/txtt/m/n/10 plot_warping_path() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-clu
 s-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_signal_pairs method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--121
+Underfull \hbox (badness 10000) in paragraph at lines 120--122
 []\T1/txtt/m/n/10 shuffle_signals() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in mod-ule 
 dtwha-clus-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--123
+Underfull \hbox (badness 10000) in paragraph at lines 122--124
 []\T1/txtt/m/n/10 significance_test() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 dtwha-clu
 s-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--123
+Underfull \hbox (badness 10000) in paragraph at lines 122--124
 \T1/qtm/m/it/10 ing.dtw_analysis.dtw_clustering method\T1/qtm/m/n/10 ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--128
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 []\T1/txtt/m/n/10 toYearFraction() \T1/qtm/m/n/10 (\T1/qtm/m/it/10 in mod-ule d
 twha-clus-ter-
  []
 
-[22
+[40
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1097.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1097.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1501.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1501.
  (./dtwhaclustering.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1097.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1097.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1501.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1501.
 
 Package rerunfilecheck Info: File `dtwhaclustering.out' has not changed.
-(rerunfilecheck)             Checksum: 67D383E8556AED9A7D2D77E5C29055F5;2116.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1097.
+(rerunfilecheck)             Checksum: B36C48D060299230E4BC0F4086A2F0F8;5765.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1501.
  ) 
 Here is how much of TeX's memory you used:
- 13898 strings out of 480608
- 201849 string characters out of 5903630
- 483653 words of memory out of 5000000
- 29342 multiletter control sequences out of 15000+600000
- 578474 words of font info for 65 fonts, out of 8000000 for 9000
+ 14047 strings out of 480608
+ 205732 string characters out of 5903630
+ 528689 words of memory out of 5000000
+ 29442 multiletter control sequences out of 15000+600000
+ 581326 words of font info for 66 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
  38i,12n,51p,2121b,665s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/l
@@ -1172,10 +1268,10 @@ c/txfonts/t1xbtt.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txf
 onts/t1xtt.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/t
 1xtt.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/txfonts/tcxtt.p
 fb>
-Output written on dtwhaclustering.pdf (26 pages, 217643 bytes).
+Output written on dtwhaclustering.pdf (44 pages, 5776520 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
- 311 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 117 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 667 PDF objects out of 1000 (max. 8388607)
+ 545 compressed objects within 6 object streams
+ 118 named destinations out of 1000 (max. 500000)
+ 310 words of extra memory for PDF output out of 10000 (max. 10000000)
 

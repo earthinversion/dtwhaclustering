@@ -88,11 +88,11 @@
             
               <p class="caption"><span class="caption-text">Usage</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/install.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analysis_support.html">dtwhaclustering.analysis_support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_linear_trend.html">dtwhaclustering.plot_linear_trend</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leastSquareModeling.html">dtwhaclustering.leastSquareModeling</a></li>
@@ -197,7 +197,20 @@
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dtwhaclustering</span> <span class="kn">import</span> <span class="n">plot_stations</span>
-<span class="n">plot_stations</span><span class="o">.</span><span class="n">plot_station_map</span><span class="p">(</span><span class="n">station_data</span> <span class="o">=</span> <span class="s1">&#39;helper_files/selected_stations_info.txt&#39;</span><span class="p">,</span> <span class="n">outfig</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outloc</span><span class="si">}</span><span class="s1">/station_map.pdf&#39;</span><span class="p">)</span>
+
+<span class="n">outloc</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;Figures&quot;</span><span class="p">,</span><span class="s2">&quot;Maps&quot;</span><span class="p">)</span>
+<span class="n">figname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">outloc</span><span class="si">}</span><span class="s1">/station_map.pdf&#39;</span>
+<span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;labelfont&quot;</span><span class="p">:</span><span class="s2">&quot;10p,Helvetica-Bold,black&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;outfig&quot;</span><span class="p">:</span><span class="n">figname</span><span class="p">,</span>
+    <span class="s2">&quot;stn_labels&quot;</span><span class="p">:[</span><span class="s1">&#39;PKGM&#39;</span><span class="p">,</span><span class="s1">&#39;YMSM&#39;</span><span class="p">,</span> <span class="s1">&#39;VR02&#39;</span><span class="p">,</span> <span class="s1">&#39;HUWE&#39;</span><span class="p">,</span> <span class="s1">&#39;LNCH&#39;</span><span class="p">,</span><span class="s1">&#39;CHEN&#39;</span><span class="p">,</span><span class="s1">&#39;TUNH&#39;</span><span class="p">,</span><span class="s1">&#39;ERPN&#39;</span><span class="p">,</span><span class="s1">&#39;FALI&#39;</span><span class="p">,</span><span class="s1">&#39;WANS&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;justify&quot;</span><span class="p">:</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;offset&quot;</span><span class="p">:</span><span class="s2">&quot;-10p/-1p&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;markerstyle&#39;</span><span class="p">:</span> <span class="s1">&#39;i12p&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;stn_labels_color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rand_justify&#39;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">}</span>
+<span class="n">plot_stations</span><span class="o">.</span><span class="n">plot_station_map</span><span class="p">(</span><span class="n">station_data</span> <span class="o">=</span> <span class="s1">&#39;helper_files/selected_stations_info.txt&#39;</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

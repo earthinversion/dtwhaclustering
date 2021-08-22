@@ -89,11 +89,11 @@
             
               <p class="caption"><span class="caption-text">Usage</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/install.html">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analysis_support.html">dtwhaclustering.analysis_support</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dtwhaclustering.plot_linear_trend</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leastSquareModeling.html">dtwhaclustering.leastSquareModeling</a></li>
@@ -221,6 +221,26 @@
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;labelfont&quot;</span><span class="p">:</span><span class="s2">&quot;16p,Helvetica-Bold,black&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;justify&quot;</span><span class="p">:</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;offset&quot;</span><span class="p">:</span><span class="s2">&quot;-10p/-1p&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;maplonrange&quot;</span><span class="p">:(</span><span class="mf">119.8</span><span class="p">,</span> <span class="mf">122.1</span><span class="p">),</span> 
+    <span class="s2">&quot;maplatrange&quot;</span><span class="p">:(</span><span class="mf">21.8</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">),</span>
+    <span class="s1">&#39;markerstyle&#39;</span><span class="p">:</span> <span class="s1">&#39;i16p&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;rand_justify&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;water_color&#39;</span><span class="p">:</span> <span class="s1">&#39;gray&#39;</span>
+<span class="p">}</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="s2">&quot;U&quot;</span>
+<span class="n">all_labels</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">all_labels</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PKGM&#39;</span><span class="p">,</span><span class="s1">&#39;YMSM&#39;</span><span class="p">,</span> <span class="s1">&#39;VR02&#39;</span><span class="p">,</span> <span class="s1">&#39;HUWE&#39;</span><span class="p">,</span> <span class="s1">&#39;LNCH&#39;</span><span class="p">,</span><span class="s1">&#39;CHEN&#39;</span><span class="p">,</span><span class="s1">&#39;TUNH&#39;</span><span class="p">]</span>
+
+<span class="n">slopeFile</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;stn_slope_res_</span><span class="si">{</span><span class="n">comp</span><span class="si">}</span><span class="s1">.txt&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">slopeFile</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;stn&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;slope&#39;</span><span class="p">],</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">)</span>
+<span class="n">figname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">outloc</span><span class="si">}</span><span class="s2">/slope-plot_</span><span class="si">{</span><span class="n">comp</span><span class="si">}</span><span class="s2">.png&quot;</span>
+<span class="n">plot_linear_trend_on_map</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">outfig</span><span class="o">=</span><span class="n">figname</span><span class="p">,</span><span class="n">stn_labels</span><span class="o">=</span><span class="n">all_labels</span><span class="p">[</span><span class="n">comp</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

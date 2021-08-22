@@ -36,7 +36,20 @@ def plot_station_map(station_data, minlon=None, maxlon=None, minlat=None, maxlat
     .. code-block:: python
 
         from dtwhaclustering import plot_stations
-        plot_stations.plot_station_map(station_data = 'helper_files/selected_stations_info.txt', outfig=f'{outloc}/station_map.pdf')
+
+        outloc=os.path.join("Figures","Maps")
+        figname = f'{outloc}/station_map.pdf'
+        kwargs={
+            "labelfont":"10p,Helvetica-Bold,black",
+            "outfig":figname,
+            "stn_labels":['PKGM','YMSM', 'VR02', 'HUWE', 'LNCH','CHEN','TUNH','ERPN','FALI','WANS'],
+            "justify":'right',
+            "offset":"-10p/-1p",
+            'markerstyle': 'i12p',
+            'stn_labels_color': 'red',
+            'rand_justify': True
+        }
+        plot_stations.plot_station_map(station_data = 'helper_files/selected_stations_info.txt',**kwargs)
 
     '''
     df = pd.read_csv(station_data)

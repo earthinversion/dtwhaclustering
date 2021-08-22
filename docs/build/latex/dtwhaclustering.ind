@@ -6,124 +6,125 @@
 
   \bigletter C
   \item \spxentry{compute\_cluster()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
   \item \spxentry{compute\_cut\_off\_inconsistency()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
   \item \spxentry{compute\_dendrogram()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
   \item \spxentry{compute\_distance()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{compute\_distance\_accl()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
   \item \spxentry{compute\_distance\_matrix()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
   \item \spxentry{compute\_interpolation()}\spxextra{in module dtwhaclustering.plot\_linear\_trend}, 
-		\hyperpage{7}
+		\hyperpage{23}
   \item \spxentry{compute\_lsq()}\spxextra{dtwhaclustering.leastSquareModeling.LSQmodules method}, 
-		\hyperpage{9}
+		\hyperpage{25}
   \item \spxentry{compute\_warping\_path()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}, 
-		\hyperpage{13}
+		\hyperpage{29}
 
   \indexspace
   \bigletter D
-  \item \spxentry{dec2dt()}\spxextra{in module dtwhaclustering.analysis\_support}, \hyperpage{5}
+  \item \spxentry{dec2dt()}\spxextra{in module dtwhaclustering.analysis\_support}, \hyperpage{21}
   \item \spxentry{dec2dt\_scalar()}\spxextra{in module dtwhaclustering.analysis\_support}, 
-		\hyperpage{5}
-  \item \spxentry{dtw\_clustering}\spxextra{class in dtwhaclustering.dtw\_analysis}, \hyperpage{11}
+		\hyperpage{21}
+  \item \spxentry{dtw\_clustering}\spxextra{class in dtwhaclustering.dtw\_analysis}, \hyperpage{27}
   \item \spxentry{dtw\_signal\_pairs}\spxextra{class in dtwhaclustering.dtw\_analysis}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{dtwhaclustering}
     \subitem \spxentry{module}, \hyperpage{1}
   \item \spxentry{dtwhaclustering.analysis\_support}
-    \subitem \spxentry{module}, \hyperpage{5}
+    \subitem \spxentry{module}, \hyperpage{21}
   \item \spxentry{dtwhaclustering.dtw\_analysis}
-    \subitem \spxentry{module}, \hyperpage{11}
+    \subitem \spxentry{module}, \hyperpage{27}
   \item \spxentry{dtwhaclustering.leastSquareModeling}
-    \subitem \spxentry{module}, \hyperpage{9}
+    \subitem \spxentry{module}, \hyperpage{25}
   \item \spxentry{dtwhaclustering.plot\_linear\_trend}
-    \subitem \spxentry{module}, \hyperpage{7}
+    \subitem \spxentry{module}, \hyperpage{23}
   \item \spxentry{dtwhaclustering.plot\_stations}
-    \subitem \spxentry{module}, \hyperpage{15}
+    \subitem \spxentry{module}, \hyperpage{33}
 
   \indexspace
   \bigletter G
   \item \spxentry{get\_linkage()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
 
   \indexspace
   \bigletter J
   \item \spxentry{jump()}\spxextra{dtwhaclustering.leastSquareModeling.LSQmodules method}, 
-		\hyperpage{9}
+		\hyperpage{25}
 
   \indexspace
   \bigletter L
   \item \spxentry{lsqmodeling()}\spxextra{in module dtwhaclustering.leastSquareModeling}, 
-		\hyperpage{9}
-  \item \spxentry{LSQmodules}\spxextra{class in dtwhaclustering.leastSquareModeling}, \hyperpage{9}
+		\hyperpage{25}
+  \item \spxentry{LSQmodules}\spxextra{class in dtwhaclustering.leastSquareModeling}, 
+		\hyperpage{25}
 
   \indexspace
   \bigletter M
   \item \spxentry{module}
     \subitem \spxentry{dtwhaclustering}, \hyperpage{1}
-    \subitem \spxentry{dtwhaclustering.analysis\_support}, \hyperpage{5}
-    \subitem \spxentry{dtwhaclustering.dtw\_analysis}, \hyperpage{11}
-    \subitem \spxentry{dtwhaclustering.leastSquareModeling}, \hyperpage{9}
-    \subitem \spxentry{dtwhaclustering.plot\_linear\_trend}, \hyperpage{7}
-    \subitem \spxentry{dtwhaclustering.plot\_stations}, \hyperpage{15}
+    \subitem \spxentry{dtwhaclustering.analysis\_support}, \hyperpage{21}
+    \subitem \spxentry{dtwhaclustering.dtw\_analysis}, \hyperpage{27}
+    \subitem \spxentry{dtwhaclustering.leastSquareModeling}, \hyperpage{25}
+    \subitem \spxentry{dtwhaclustering.plot\_linear\_trend}, \hyperpage{23}
+    \subitem \spxentry{dtwhaclustering.plot\_stations}, \hyperpage{33}
 
   \indexspace
   \bigletter N
   \item \spxentry{noise\_robustness\_test()}\spxextra{in module dtwhaclustering.dtw\_analysis}, 
-		\hyperpage{14}
+		\hyperpage{30}
 
   \indexspace
   \bigletter O
   \item \spxentry{optimum\_cluster\_elbow()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
 
   \indexspace
   \bigletter P
   \item \spxentry{plot\_cluster()}\spxextra{in module dtwhaclustering.dtw\_analysis}, 
-		\hyperpage{14}
+		\hyperpage{30}
   \item \spxentry{plot\_cluster\_geomap()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{11}
+		\hyperpage{27}
   \item \spxentry{plot\_cluster\_geomap\_interpolated()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{12}
+		\hyperpage{28}
   \item \spxentry{plot\_cluster\_xymap()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{12}
+		\hyperpage{28}
   \item \spxentry{plot\_dendrogram()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{plot\_hac\_iteration()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{plot\_linear\_trend\_on\_map()}\spxextra{in module dtwhaclustering.plot\_linear\_trend}, 
-		\hyperpage{7}
+		\hyperpage{23}
   \item \spxentry{plot\_matrix()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}, 
-		\hyperpage{14}
+		\hyperpage{30}
   \item \spxentry{plot\_optimum\_cluster()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{plot\_polar\_dendrogram()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{plot\_signals()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{13}
+		\hyperpage{29}
   \item \spxentry{plot\_signals()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}, 
-		\hyperpage{14}
+		\hyperpage{30}
   \item \spxentry{plot\_signals()}\spxextra{in module dtwhaclustering.dtw\_analysis}, 
-		\hyperpage{14}
+		\hyperpage{30}
   \item \spxentry{plot\_station\_map()}\spxextra{in module dtwhaclustering.plot\_stations}, 
-		\hyperpage{15}
+		\hyperpage{33}
   \item \spxentry{plot\_warping\_path()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_signal\_pairs method}, 
-		\hyperpage{14}
+		\hyperpage{30}
 
   \indexspace
   \bigletter S
   \item \spxentry{shuffle\_signals()}\spxextra{in module dtwhaclustering.dtw\_analysis}, 
-		\hyperpage{14}
+		\hyperpage{30}
   \item \spxentry{significance\_test()}\spxextra{dtwhaclustering.dtw\_analysis.dtw\_clustering method}, 
-		\hyperpage{13}
+		\hyperpage{29}
 
   \indexspace
   \bigletter T
   \item \spxentry{toYearFraction()}\spxextra{in module dtwhaclustering.analysis\_support}, 
-		\hyperpage{5}
+		\hyperpage{21}
 
 \end{sphinxtheindex}

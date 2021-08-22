@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Signal Analysis &mdash; dtwhaclustering 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dtwhaclustering.analysis_support" href="../modules/analysis_support.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> dtwhaclustering
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Signal Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-signals-for-analysis">Create signals for analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inspect-the-dtw-distance-between-two-signals">Inspect the DTW distance between two signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plot-warping-path">Plot warping path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-multiple-signals">Create multiple signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compute-the-relative-dtw-distance-between-the-signals">Compute the relative DTW distance between the signals</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/analysis_support.html">dtwhaclustering.analysis_support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot_linear_trend.html">dtwhaclustering.plot_linear_trend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/leastSquareModeling.html">dtwhaclustering.leastSquareModeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dtw_analysis.html">dtwhaclustering.dtw_analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot_stations.html">dtwhaclustering.plot_stations</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dtwhaclustering</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Signal Analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usage/examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="signal-analysis">
+<h1>Signal Analysis<a class="headerlink" href="#signal-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-signals-for-analysis">
+<h2>Create signals for analysis<a class="headerlink" href="#create-signals-for-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># sampling parameters</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">100</span>   <span class="c1"># sampling rate, in Hz</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># duration, in seconds</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">T</span> <span class="o">*</span> <span class="n">fs</span>  <span class="c1"># duration, in samples</span>
+
+<span class="c1"># time variable</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">SNR</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#noise</span>
+
+<span class="n">XX0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">7</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#+ np.random.randn(1, N) * SNR</span>
+<span class="n">XX1</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sawtooth</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">5</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#+ np.random.randn(1, N) * SNR</span>
+<span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">XX0</span><span class="p">,</span> <span class="n">XX1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inspect-the-dtw-distance-between-two-signals">
+<h2>Inspect the DTW distance between two signals<a class="headerlink" href="#inspect-the-dtw-distance-between-two-signals" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dtwsig</span> <span class="o">=</span> <span class="n">dtw_signal_pairs</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span> <span class="s1">&#39;S2&#39;</span><span class="p">])</span>
+<span class="n">dtwsig</span><span class="o">.</span><span class="n">plot_signals</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/fig_s1_s2.png" src="../_images/fig_s1_s2.png" />
+</div>
+<div class="section" id="plot-warping-path">
+<h2>Plot warping path<a class="headerlink" href="#plot-warping-path" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">distance</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">dtwsig</span><span class="o">.</span><span class="n">plot_warping_path</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DTW distance between signals: </span><span class="si">{</span><span class="n">distance</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;warping_path_s1_s2.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>DTW distance between signals: 5.2093</p>
+<img alt="../_images/warping_path_s1_s2.pdf" src="../_images/warping_path_s1_s2.pdf" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dtwsig</span><span class="o">.</span><span class="n">plot_matrix</span><span class="p">(</span><span class="n">windowfrac</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">psi</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="c1">#Only allow for shifts up to 60% of the minimum signal length away from the two diagonals.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/warping_matrix.png" src="../_images/warping_matrix.png" />
+</div>
+<div class="section" id="create-multiple-signals">
+<h2>Create multiple signals<a class="headerlink" href="#create-multiple-signals" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="mi">100</span>   <span class="c1"># sampling rate, in Hz</span>
+<span class="n">T</span>  <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># duration, in seconds</span>
+
+<span class="n">N</span>  <span class="o">=</span> <span class="n">T</span> <span class="o">*</span> <span class="n">fs</span> <span class="c1"># duration, in samples</span>
+<span class="n">M</span>  <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># number of sources</span>
+<span class="n">S1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">S2</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sawtooth</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">S3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">S4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">S5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">S5</span><span class="p">])</span>
+
+<span class="c1">## instantiate the class</span>
+<span class="n">dtw_cluster</span> <span class="o">=</span> <span class="n">dtw_clustering</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span><span class="s1">&#39;S2&#39;</span><span class="p">,</span><span class="s1">&#39;S3&#39;</span><span class="p">,</span><span class="s1">&#39;S4&#39;</span><span class="p">,</span><span class="s1">&#39;S5&#39;</span><span class="p">])</span>
+
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;pdf.fonttype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">dtw_cluster</span><span class="o">.</span><span class="n">plot_signals</span><span class="p">()</span>
+<span class="c1"># plt.show()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;base_functions.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/base_functions.pdf" src="../_images/base_functions.pdf" />
+</div>
+<div class="section" id="compute-the-relative-dtw-distance-between-the-signals">
+<h2>Compute the relative DTW distance between the signals<a class="headerlink" href="#compute-the-relative-dtw-distance-between-the-signals" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span> <span class="o">=</span> <span class="n">dtw_cluster</span><span class="o">.</span><span class="n">compute_distance_matrix</span><span class="p">(</span><span class="n">compact</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">5.15998322</span><span class="p">,</span> <span class="mf">4.19080907</span><span class="p">,</span> <span class="mf">5.77875263</span><span class="p">,</span> <span class="mf">7.95685039</span><span class="p">],</span>
+<span class="p">[</span><span class="mf">5.15998322</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">4.74413601</span><span class="p">,</span> <span class="mf">7.71110741</span><span class="p">,</span> <span class="mf">9.31343712</span><span class="p">],</span>
+<span class="p">[</span><span class="mf">4.19080907</span><span class="p">,</span> <span class="mf">4.74413601</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">8.75201301</span><span class="p">,</span> <span class="mf">8.51048008</span><span class="p">],</span>
+<span class="p">[</span><span class="mf">5.77875263</span><span class="p">,</span> <span class="mf">7.71110741</span><span class="p">,</span> <span class="mf">8.75201301</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">,</span> <span class="mf">9.18406086</span><span class="p">],</span>
+<span class="p">[</span><span class="mf">7.95685039</span><span class="p">,</span> <span class="mf">9.31343712</span><span class="p">,</span> <span class="mf">8.51048008</span><span class="p">,</span> <span class="mf">9.18406086</span><span class="p">,</span> <span class="mf">0.</span>        <span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../modules/analysis_support.html" class="btn btn-neutral float-right" title="dtwhaclustering.analysis_support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Utpal Kumar.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

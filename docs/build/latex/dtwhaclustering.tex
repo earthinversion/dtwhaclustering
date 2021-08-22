@@ -61,7 +61,7 @@
 
 
 \title{dtwhaclustering}
-\date{Aug 20, 2021}
+\date{Aug 22, 2021}
 \release{1.0}
 \author{Utpal Kumar}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -76,6 +76,26 @@
 \pagestyle{normal}
 \phantomsection\label{\detokenize{index::doc}}
 
+\phantomsection\label{\detokenize{usage/module_contents:module-dtwhaclustering}}\index{module@\spxentry{module}!dtwhaclustering@\spxentry{dtwhaclustering}}\index{dtwhaclustering@\spxentry{dtwhaclustering}!module@\spxentry{module}}
+
+\chapter{Dynamic Time Warping based Hierarchical Agglomerative Clustering}
+\label{\detokenize{usage/module_contents:dynamic-time-warping-based-hierarchical-agglomerative-clustering}}\label{\detokenize{usage/module_contents::doc}}
+\sphinxAtStartPar
+Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
+\begin{quote}\begin{description}
+\item[{author}] \leavevmode
+\sphinxAtStartPar
+Utpal Kumar
+
+\item[{date}] \leavevmode
+\sphinxAtStartPar
+2021/08
+
+\item[{copyright}] \leavevmode
+\sphinxAtStartPar
+2021, Institute of Earth Sciences, Academia Sinica.
+
+\end{description}\end{quote}
 
 
 \chapter{Installation}
@@ -123,26 +143,362 @@ This package is available on PyPI (requires Python 3):
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{pip} \PYG{n}{install} \PYG{n}{dtwhaclustering}
 \end{sphinxVerbatim}
-\phantomsection\label{\detokenize{modules/module_contents:module-dtwhaclustering}}\index{module@\spxentry{module}!dtwhaclustering@\spxentry{dtwhaclustering}}\index{dtwhaclustering@\spxentry{dtwhaclustering}!module@\spxentry{module}}
 
-\chapter{Dynamic Time Warping based Hierarchical Agglomerative Clustering}
-\label{\detokenize{modules/module_contents:dynamic-time-warping-based-hierarchical-agglomerative-clustering}}\label{\detokenize{modules/module_contents::doc}}
-\sphinxAtStartPar
-Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
-\begin{quote}\begin{description}
-\item[{author}] \leavevmode
-\sphinxAtStartPar
-Utpal Kumar
 
-\item[{date}] \leavevmode
-\sphinxAtStartPar
-2021/08
+\chapter{Signal Analysis}
+\label{\detokenize{usage/signal_analysis_examples:signal-analysis}}\label{\detokenize{usage/signal_analysis_examples::doc}}
 
-\item[{copyright}] \leavevmode
-\sphinxAtStartPar
-2021, Institute of Earth Sciences, Academia Sinica.
+\section{Create signals for analysis}
+\label{\detokenize{usage/signal_analysis_examples:create-signals-for-analysis}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} sampling parameters}
+\PYG{n}{fs} \PYG{o}{=} \PYG{l+m+mi}{100}   \PYG{c+c1}{\PYGZsh{} sampling rate, in Hz}
+\PYG{n}{T} \PYG{o}{=} \PYG{l+m+mi}{1}      \PYG{c+c1}{\PYGZsh{} duration, in seconds}
+\PYG{n}{N} \PYG{o}{=} \PYG{n}{T} \PYG{o}{*} \PYG{n}{fs}  \PYG{c+c1}{\PYGZsh{} duration, in samples}
 
-\end{description}\end{quote}
+\PYG{c+c1}{\PYGZsh{} time variable}
+\PYG{n}{t} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{T}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+
+\PYG{n}{SNR} \PYG{o}{=} \PYG{l+m+mf}{0.2} \PYG{c+c1}{\PYGZsh{}noise}
+
+\PYG{n}{XX0} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{7}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{}+ np.random.randn(1, N) * SNR}
+\PYG{n}{XX1} \PYG{o}{=} \PYG{n}{signal}\PYG{o}{.}\PYG{n}{sawtooth}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{5}\PYG{o}{+}\PYG{n}{np}\PYG{o}{.}\PYG{n}{pi}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{}+ np.random.randn(1, N) * SNR}
+\PYG{n}{s1}\PYG{p}{,} \PYG{n}{s2} \PYG{o}{=} \PYG{n}{XX0}\PYG{p}{,} \PYG{n}{XX1}
+\end{sphinxVerbatim}
+
+
+\section{Inspect the DTW distance between two signals}
+\label{\detokenize{usage/signal_analysis_examples:inspect-the-dtw-distance-between-two-signals}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dtwsig} \PYG{o}{=} \PYG{n}{dtw\PYGZus{}signal\PYGZus{}pairs}\PYG{p}{(}\PYG{n}{s1}\PYG{p}{,} \PYG{n}{s2}\PYG{p}{,} \PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{dtwsig}\PYG{o}{.}\PYG{n}{plot\PYGZus{}signals}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{fig_s1_s2}.png}
+
+
+\section{Plot warping path}
+\label{\detokenize{usage/signal_analysis_examples:plot-warping-path}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{matplotlib}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pdf.fonttype}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{42}
+\PYG{n}{distance}\PYG{p}{,}\PYG{n}{\PYGZus{}}\PYG{p}{,}\PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{dtwsig}\PYG{o}{.}\PYG{n}{plot\PYGZus{}warping\PYGZus{}path}\PYG{p}{(}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{DTW distance between signals: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{distance}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{warping\PYGZus{}path\PYGZus{}s1\PYGZus{}s2.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\sphinxAtStartPar
+DTW distance between signals: 5.2093
+
+\noindent\sphinxincludegraphics{{warping_path_s1_s2}.pdf}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dtwsig}\PYG{o}{.}\PYG{n}{plot\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{windowfrac}\PYG{o}{=}\PYG{l+m+mf}{0.6}\PYG{p}{,} \PYG{n}{psi}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{}Only allow for shifts up to 60\PYGZpc{} of the minimum signal length away from the two diagonals.}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{warping_matrix}.png}
+
+
+\section{Create multiple signals}
+\label{\detokenize{usage/signal_analysis_examples:create-multiple-signals}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{fs} \PYG{o}{=} \PYG{l+m+mi}{100}   \PYG{c+c1}{\PYGZsh{} sampling rate, in Hz}
+\PYG{n}{T}  \PYG{o}{=} \PYG{l+m+mi}{1}      \PYG{c+c1}{\PYGZsh{} duration, in seconds}
+
+\PYG{n}{N}  \PYG{o}{=} \PYG{n}{T} \PYG{o}{*} \PYG{n}{fs} \PYG{c+c1}{\PYGZsh{} duration, in samples}
+\PYG{n}{M}  \PYG{o}{=} \PYG{l+m+mi}{5}      \PYG{c+c1}{\PYGZsh{} number of sources}
+\PYG{n}{S1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{7}\PYG{p}{)}
+\PYG{n}{S2} \PYG{o}{=} \PYG{n}{signal}\PYG{o}{.}\PYG{n}{sawtooth}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n}{S3} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.5}
+\PYG{n}{S4} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sign}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{S5} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+
+\PYG{n}{time\PYGZus{}series} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{S1}\PYG{p}{,} \PYG{n}{S2}\PYG{p}{,} \PYG{n}{S3}\PYG{p}{,} \PYG{n}{S4}\PYG{p}{,} \PYG{n}{S5}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{} instantiate the class}
+\PYG{n}{dtw\PYGZus{}cluster} \PYG{o}{=} \PYG{n}{dtw\PYGZus{}clustering}\PYG{p}{(}\PYG{n}{time\PYGZus{}series}\PYG{p}{,}\PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S4}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S5}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{matplotlib}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pdf.fonttype}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{42}
+\PYG{n}{dtw\PYGZus{}cluster}\PYG{o}{.}\PYG{n}{plot\PYGZus{}signals}\PYG{p}{(}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plt.show()}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{base\PYGZus{}functions.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{base_functions}.pdf}
+
+
+\section{Compute the relative DTW distance between the signals}
+\label{\detokenize{usage/signal_analysis_examples:compute-the-relative-dtw-distance-between-the-signals}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{ds} \PYG{o}{=} \PYG{n}{dtw\PYGZus{}cluster}\PYG{o}{.}\PYG{n}{compute\PYGZus{}distance\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{compact}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{p}{[}\PYG{l+m+mf}{0.}        \PYG{p}{,} \PYG{l+m+mf}{5.15998322}\PYG{p}{,} \PYG{l+m+mf}{4.19080907}\PYG{p}{,} \PYG{l+m+mf}{5.77875263}\PYG{p}{,} \PYG{l+m+mf}{7.95685039}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{[}\PYG{l+m+mf}{5.15998322}\PYG{p}{,} \PYG{l+m+mf}{0.}        \PYG{p}{,} \PYG{l+m+mf}{4.74413601}\PYG{p}{,} \PYG{l+m+mf}{7.71110741}\PYG{p}{,} \PYG{l+m+mf}{9.31343712}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{[}\PYG{l+m+mf}{4.19080907}\PYG{p}{,} \PYG{l+m+mf}{4.74413601}\PYG{p}{,} \PYG{l+m+mf}{0.}        \PYG{p}{,} \PYG{l+m+mf}{8.75201301}\PYG{p}{,} \PYG{l+m+mf}{8.51048008}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{[}\PYG{l+m+mf}{5.77875263}\PYG{p}{,} \PYG{l+m+mf}{7.71110741}\PYG{p}{,} \PYG{l+m+mf}{8.75201301}\PYG{p}{,} \PYG{l+m+mf}{0.}        \PYG{p}{,} \PYG{l+m+mf}{9.18406086}\PYG{p}{]}\PYG{p}{,}
+\PYG{p}{[}\PYG{l+m+mf}{7.95685039}\PYG{p}{,} \PYG{l+m+mf}{9.31343712}\PYG{p}{,} \PYG{l+m+mf}{8.51048008}\PYG{p}{,} \PYG{l+m+mf}{9.18406086}\PYG{p}{,} \PYG{l+m+mf}{0.}        \PYG{p}{]}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+
+\chapter{Clustering Analysis}
+\label{\detokenize{usage/clustering_analysis_examples:clustering-analysis}}\label{\detokenize{usage/clustering_analysis_examples::doc}}
+
+\section{Create signals for analysis}
+\label{\detokenize{usage/clustering_analysis_examples:create-signals-for-analysis}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{dtwhaclustering}\PYG{n+nn}{.}\PYG{n+nn}{dtw\PYGZus{}analysis} \PYG{k+kn}{import} \PYG{n}{dtw\PYGZus{}signal\PYGZus{}pairs}\PYG{p}{,} \PYG{n}{dtw\PYGZus{}clustering}\PYG{p}{,} \PYG{n}{plot\PYGZus{}signals}\PYG{p}{,} \PYG{n}{shuffle\PYGZus{}signals}\PYG{p}{,} \PYG{n}{plot\PYGZus{}cluster}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{scipy} \PYG{k+kn}{import} \PYG{n}{signal}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{dtaidistance} \PYG{k+kn}{import} \PYG{n}{dtw}
+\PYG{k+kn}{from} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{cluster}\PYG{n+nn}{.}\PYG{n+nn}{hierarchy} \PYG{k+kn}{import} \PYG{n}{fcluster}
+
+\PYG{k+kn}{from} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{cluster}\PYG{n+nn}{.}\PYG{n+nn}{hierarchy} \PYG{k+kn}{import} \PYG{n}{dendrogram}
+\PYG{k+kn}{from} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{cluster} \PYG{k+kn}{import} \PYG{n}{AgglomerativeClustering}
+
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{seed}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} sampling parameters}
+\PYG{n}{fs} \PYG{o}{=} \PYG{l+m+mi}{100}   \PYG{c+c1}{\PYGZsh{} sampling rate, in Hz}
+\PYG{n}{T}  \PYG{o}{=} \PYG{l+m+mi}{1}      \PYG{c+c1}{\PYGZsh{} duration, in seconds}
+\PYG{n}{N}  \PYG{o}{=} \PYG{n}{T} \PYG{o}{*} \PYG{n}{fs} \PYG{c+c1}{\PYGZsh{} duration, in samples}
+\PYG{n}{M}  \PYG{o}{=} \PYG{l+m+mi}{5}      \PYG{c+c1}{\PYGZsh{} number of sources}
+\PYG{n}{R}  \PYG{o}{=} \PYG{l+m+mi}{3}      \PYG{c+c1}{\PYGZsh{} number of copies}
+\PYG{n}{MR} \PYG{o}{=} \PYG{n}{M} \PYG{o}{*} \PYG{n}{R}
+
+
+\PYG{c+c1}{\PYGZsh{} time variable}
+\PYG{n}{t} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{linspace}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{T}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)}
+
+\PYG{n}{S1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{7}\PYG{p}{)}
+\PYG{n}{S2} \PYG{o}{=} \PYG{n}{signal}\PYG{o}{.}\PYG{n}{sawtooth}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n}{S3} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{cos}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.5}
+\PYG{n}{S4} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sign}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{sin}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{np}\PYG{o}{.}\PYG{n}{pi} \PYG{o}{*} \PYG{n}{t} \PYG{o}{*} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{S5} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+
+\PYG{n}{time\PYGZus{}series} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{n}{S1}\PYG{p}{,} \PYG{n}{S2}\PYG{p}{,} \PYG{n}{S3}\PYG{p}{,} \PYG{n}{S4}\PYG{p}{,} \PYG{n}{S5}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plot\PYGZus{}signals}\PYG{p}{(}\PYG{n}{time\PYGZus{}series}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{base_functions}.pdf}
+
+
+\section{Add noise and make 3 copies of each signal}
+\label{\detokenize{usage/clustering_analysis_examples:add-noise-and-make-3-copies-of-each-signal}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{SNR} \PYG{o}{=} \PYG{l+m+mf}{0.2}
+\PYG{n}{X0} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{tile}\PYG{p}{(}\PYG{n}{S1}\PYG{p}{,} \PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)} \PYG{o}{*} \PYG{n}{SNR}
+\PYG{n}{X1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{tile}\PYG{p}{(}\PYG{n}{S2}\PYG{p}{,} \PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)} \PYG{o}{*} \PYG{n}{SNR}
+\PYG{n}{X2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{tile}\PYG{p}{(}\PYG{n}{S3}\PYG{p}{,} \PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)} \PYG{o}{*} \PYG{n}{SNR}
+\PYG{n}{X3} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{tile}\PYG{p}{(}\PYG{n}{S4}\PYG{p}{,} \PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)} \PYG{o}{*} \PYG{n}{SNR}
+\PYG{n}{X4} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{tile}\PYG{p}{(}\PYG{n}{S5}\PYG{p}{,} \PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{+} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{randn}\PYG{p}{(}\PYG{n}{R}\PYG{p}{,} \PYG{n}{N}\PYG{p}{)} \PYG{o}{*} \PYG{n}{SNR}
+\PYG{n}{X} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{concatenate}\PYG{p}{(}\PYG{p}{(}\PYG{n}{X0}\PYG{p}{,} \PYG{n}{X1}\PYG{p}{,} \PYG{n}{X2}\PYG{p}{,} \PYG{n}{X3}\PYG{p}{,} \PYG{n}{X4}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n}{color} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{3}\PYG{o}{+}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{3}\PYG{o}{+}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{3}\PYG{o}{+}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{3}\PYG{o}{+}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C4}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{*}\PYG{l+m+mi}{3}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plot\PYGZus{}signals}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{color}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{noise_copies_signals}.png}
+
+
+\section{Geographically distribute the signals}
+\label{\detokenize{usage/clustering_analysis_examples:geographically-distribute-the-signals}}
+\sphinxAtStartPar
+Now, we have 15 signals in total. Let us also randomly make these signals distributed in geographical space by assigning them longitudes and latitudes. We assume that the signals with similar waveforms are geographically co\sphinxhyphen{}located.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{S0} \PYG{n}{variants} \PYG{p}{(}\PYG{n}{S0}\PYG{p}{,} \PYG{n}{S1}\PYG{p}{,} \PYG{n}{S2}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{xrange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{3}\PYG{p}{)} \PYG{n}{yrange}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)}
+\PYG{n}{S1} \PYG{n}{variants} \PYG{p}{(}\PYG{n}{S3}\PYG{p}{,} \PYG{n}{S4}\PYG{p}{,} \PYG{n}{S5}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{xrange}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{4}\PYG{p}{)} \PYG{n}{yrange}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n}{S2} \PYG{n}{variants} \PYG{p}{(}\PYG{n}{S6}\PYG{p}{,} \PYG{n}{S7}\PYG{p}{,} \PYG{n}{S8}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{xrange}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{8}\PYG{p}{)} \PYG{n}{yrange}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{6}\PYG{p}{)}
+\PYG{n}{S3} \PYG{n}{variants} \PYG{p}{(}\PYG{n}{S9}\PYG{p}{,} \PYG{n}{S10}\PYG{p}{,} \PYG{n}{S11}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{xrange}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{10}\PYG{p}{)} \PYG{n}{yrange}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{4}\PYG{p}{)}
+\PYG{n}{S4} \PYG{n}{variants} \PYG{p}{(}\PYG{n}{S12}\PYG{p}{,} \PYG{n}{S13}\PYG{p}{,} \PYG{n}{S14}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{xrange}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{9}\PYG{p}{)} \PYG{n}{yrange}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{9}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{S0\PYGZus{}lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{n}{S0\PYGZus{}lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{S1\PYGZus{}lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{n}{S1\PYGZus{}lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{S2\PYGZus{}lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{n}{S2\PYGZus{}lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{S3\PYGZus{}lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{n}{S3\PYGZus{}lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{S3\PYGZus{}lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{n}{S3\PYGZus{}lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{S4\PYGZus{}lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+\PYG{n}{S4\PYGZus{}lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{lons} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{concatenate}\PYG{p}{(}\PYG{p}{(}\PYG{n}{S0\PYGZus{}lons}\PYG{p}{,} \PYG{n}{S1\PYGZus{}lons}\PYG{p}{,} \PYG{n}{S2\PYGZus{}lons}\PYG{p}{,} \PYG{n}{S3\PYGZus{}lons}\PYG{p}{,} \PYG{n}{S4\PYGZus{}lons}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{lats} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{concatenate}\PYG{p}{(}\PYG{p}{(}\PYG{n}{S0\PYGZus{}lats}\PYG{p}{,} \PYG{n}{S1\PYGZus{}lats}\PYG{p}{,} \PYG{n}{S2\PYGZus{}lats}\PYG{p}{,} \PYG{n}{S3\PYGZus{}lats}\PYG{p}{,} \PYG{n}{S4\PYGZus{}lats}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n}{plot\PYGZus{}cluster}\PYG{p}{(}\PYG{n}{lons}\PYG{p}{,}\PYG{n}{lats}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plt.show()}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{signals\PYGZus{}locations.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{signals_locations}.pdf}
+
+
+\section{Reshuffle the noisy signals}
+\label{\detokenize{usage/clustering_analysis_examples:reshuffle-the-noisy-signals}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{shuffled\PYGZus{}idx}\PYG{p}{,} \PYG{n}{shuffled\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{shuffle\PYGZus{}signals}\PYG{p}{(}\PYG{n}{X}\PYG{p}{,} \PYG{n}{labels}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{,} \PYG{n}{plot\PYGZus{}signals}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{shuffled\PYGZus{}lons} \PYG{o}{=} \PYG{n}{lons}\PYG{p}{[}\PYG{n}{shuffled\PYGZus{}idx}\PYG{p}{]}
+\PYG{n}{shuffled\PYGZus{}lats} \PYG{o}{=} \PYG{n}{lats}\PYG{p}{[}\PYG{n}{shuffled\PYGZus{}idx}\PYG{p}{]}
+
+\PYG{n}{labels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S1c}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S2a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S2b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S2c}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S3a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S3b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S3c}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S4a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S4b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S4c}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S5a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S5b}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{S5c}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{newlabels} \PYG{o}{=} \PYG{n}{labels}\PYG{p}{[}\PYG{n}{shuffled\PYGZus{}idx}\PYG{p}{]}
+
+\PYG{n}{color} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{color}\PYG{p}{)}
+\PYG{n}{color} \PYG{o}{=} \PYG{n}{color}\PYG{p}{[}\PYG{n}{shuffled\PYGZus{}idx}\PYG{p}{]}
+\PYG{n}{fig}\PYG{p}{,} \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plot\PYGZus{}signals}\PYG{p}{(}\PYG{n}{shuffled\PYGZus{}matrix}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{color}\PYG{p}{,} \PYG{n}{labels}\PYG{o}{=}\PYG{n}{newlabels}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{shuffled\PYGZus{}signals.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{shuffled_signals}.pdf}
+
+
+\section{Cluster reshuffled signals}
+\label{\detokenize{usage/clustering_analysis_examples:cluster-reshuffled-signals}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dtw\PYGZus{}cluster2} \PYG{o}{=} \PYG{n}{dtw\PYGZus{}clustering}\PYG{p}{(}\PYG{n}{shuffled\PYGZus{}matrix}\PYG{p}{,} \PYG{n}{labels}\PYG{o}{=}\PYG{n}{newlabels}\PYG{p}{,} \PYG{n}{longitudes}\PYG{o}{=}\PYG{n}{shuffled\PYGZus{}lons}\PYG{p}{,} \PYG{n}{latitudes}\PYG{o}{=}\PYG{n}{shuffled\PYGZus{}lats}\PYG{p}{)}
+\PYG{n}{dtw\PYGZus{}cluster2}\PYG{o}{.}\PYG{n}{plot\PYGZus{}dendrogram}\PYG{p}{(}\PYG{n}{annotate\PYGZus{}above}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{n}{xlabel}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Signals}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{figname}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{example\PYGZus{}dtw\PYGZus{}cluster.png}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{distance\PYGZus{}threshold}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{optimal}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{example_dtw_cluster}.pdf}
+
+\sphinxAtStartPar
+In the above dendrogram, we manually selected the threshold distance to be 3 to find the best clusters
+
+
+\section{Plot the geographical locations of the clusters}
+\label{\detokenize{usage/clustering_analysis_examples:plot-the-geographical-locations-of-the-clusters}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dtw\PYGZus{}cluster2}\PYG{o}{.}\PYG{n}{plot\PYGZus{}cluster\PYGZus{}xymap}\PYG{p}{(}\PYG{n}{dtw\PYGZus{}distance}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{figname}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{xlabel}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{ylabel}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{n}{markersize}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{tickfontsize}\PYG{o}{=}\PYG{l+m+mi}{30}\PYG{p}{,} \PYG{n}{cbarsize}\PYG{o}{=}\PYG{l+m+mi}{40}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{signals\PYGZus{}cluster\PYGZus{}xy\PYGZus{}map.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{edgecolors}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{black}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{linewidths}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{signals_cluster_xy_map}.pdf}
+
+
+\section{Polar dendrogram}
+\label{\detokenize{usage/clustering_analysis_examples:polar-dendrogram}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{kwargs\PYGZus{}dendro}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{plotstyle}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{seaborn}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{linewidth}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{5}\PYG{p}{,}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{gridwidth}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mf}{0.8}\PYG{p}{,}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{gridcolor}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{xtickfontsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{60}\PYG{p}{,}
+\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ytickfontsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{60}\PYG{p}{,}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{p}{,}\PYG{l+m+mi}{40}\PYG{p}{)}\PYG{p}{,}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{distance\PYGZus{}threshold}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{optimal}\PYG{l+s+s2}{\PYGZdq{}} \PYG{c+c1}{\PYGZsh{}use optimal number of clusters estimated by elbow method}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{dtw\PYGZus{}cluster2}\PYG{o}{.}\PYG{n}{plot\PYGZus{}polar\PYGZus{}dendrogram}\PYG{p}{(}\PYG{o}{*}\PYG{o}{*}\PYG{n}{kwargs\PYGZus{}dendro}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{example\PYGZus{}polar\PYGZus{}dendro.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{example_polar_dendro}.pdf}
+
+
+\section{How the DTW distance changes with iterations to obtain the dendrogram?}
+\label{\detokenize{usage/clustering_analysis_examples:how-the-dtw-distance-changes-with-iterations-to-obtain-the-dendrogram}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dtw\PYGZus{}cluster2}\PYG{o}{.}\PYG{n}{plot\PYGZus{}hac\PYGZus{}iteration}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{plot_hac_iteration}.pdf}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{dtw\PYGZus{}cluster2}\PYG{o}{.}\PYG{n}{plot\PYGZus{}optimum\PYGZus{}cluster}\PYG{p}{(}\PYG{n}{legend\PYGZus{}outside}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{optimum\PYGZus{}clusters.pdf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{optimum_clusters}.pdf}
+
+
+\section{Euclidean distance\sphinxhyphen{}based cluster}
+\label{\detokenize{usage/clustering_analysis_examples:euclidean-distance-based-cluster}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{compute\PYGZus{}linkage}\PYG{p}{(}\PYG{n}{model}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} create the counts of samples under each node}
+    \PYG{n}{counts} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{n}{model}\PYG{o}{.}\PYG{n}{children\PYGZus{}}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n}{n\PYGZus{}samples} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{model}\PYG{o}{.}\PYG{n}{labels\PYGZus{}}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{i}\PYG{p}{,} \PYG{n}{merge} \PYG{o+ow}{in} \PYG{n+nb}{enumerate}\PYG{p}{(}\PYG{n}{model}\PYG{o}{.}\PYG{n}{children\PYGZus{}}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{current\PYGZus{}count} \PYG{o}{=} \PYG{l+m+mi}{0}
+        \PYG{k}{for} \PYG{n}{child\PYGZus{}idx} \PYG{o+ow}{in} \PYG{n}{merge}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{child\PYGZus{}idx} \PYG{o}{\PYGZlt{}} \PYG{n}{n\PYGZus{}samples}\PYG{p}{:}
+                \PYG{n}{current\PYGZus{}count} \PYG{o}{+}\PYG{o}{=} \PYG{l+m+mi}{1}  \PYG{c+c1}{\PYGZsh{} leaf node}
+            \PYG{k}{else}\PYG{p}{:}
+                \PYG{n}{current\PYGZus{}count} \PYG{o}{+}\PYG{o}{=} \PYG{n}{counts}\PYG{p}{[}\PYG{n}{child\PYGZus{}idx} \PYG{o}{\PYGZhy{}} \PYG{n}{n\PYGZus{}samples}\PYG{p}{]}
+        \PYG{n}{counts}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{current\PYGZus{}count}
+
+    \PYG{n}{linkage\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{column\PYGZus{}stack}\PYG{p}{(}\PYG{p}{[}\PYG{n}{model}\PYG{o}{.}\PYG{n}{children\PYGZus{}}\PYG{p}{,} \PYG{n}{model}\PYG{o}{.}\PYG{n}{distances\PYGZus{}}\PYG{p}{,}
+                                    \PYG{n}{counts}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n+nb}{float}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{linkage\PYGZus{}matrix}
+
+\PYG{k}{def} \PYG{n+nf}{plot\PYGZus{}dendrogram}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{kwargs}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Create linkage matrix and then plot the dendrogram}
+
+    \PYG{n}{linkage\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{compute\PYGZus{}linkage}\PYG{p}{(}\PYG{n}{model}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Plot the corresponding dendrogram}
+    \PYG{n}{dendrogram}\PYG{p}{(}\PYG{n}{linkage\PYGZus{}matrix}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{kwargs}\PYG{p}{)}
+
+
+\PYG{c+c1}{\PYGZsh{}‘ward’ minimizes the variance of the clusters being merged}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{AgglomerativeClustering}\PYG{p}{(}\PYG{n}{distance\PYGZus{}threshold}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{n\PYGZus{}clusters}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{affinity}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{euclidean}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{linkage}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ward}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{X}\PYG{p}{)}
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{20}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} plot the top three levels of the dendrogram}
+\PYG{n}{plot\PYGZus{}dendrogram}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n}{p}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{color\PYGZus{}threshold}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{26}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{yticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{26}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{axhline}\PYG{p}{(}\PYG{n}{y}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{c}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{k}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Signal Indexes}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{example\PYGZus{}euclidean\PYGZus{}cluster.pdf}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{bbox\PYGZus{}inches}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tight}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{close}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+
+\noindent\sphinxincludegraphics{{example_euclidean_cluster}.pdf}
+
+\sphinxAtStartPar
+Both Euclidean and DTW based clustering results are similar. However, we can see some obvious differences. Let us list some of the similarity and differences for the above example.
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Both the results found 5 significant clusters.
+
+\item {} 
+\sphinxAtStartPar
+Both Euclidean and DTW based HAC found that the random function based time series (12, 13, 14) are most dissimilar
+
+\item {} 
+\sphinxAtStartPar
+The two closest clusters with DTW is sawtooth (6,7,8) and sine func(0,1,2). While that with the Euclidean, it is abs\_cosine (6,7,8) and sawtooth fn (3,4,5)
+
+\end{itemize}
+
+\sphinxAtStartPar
+The two results are similar because the signals considered for this example are stationary in nature.
 
 
 \chapter{dtwhaclustering.analysis\_support}
@@ -345,6 +701,27 @@ Plot the interpolated linear trend values along with the original data points on
 None
 
 \end{description}\end{quote}
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{kwargs}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{labelfont}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{16p,Helvetica\PYGZhy{}Bold,black}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{justify}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{right}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{offset}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}10p/\PYGZhy{}1p}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{maplonrange}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{(}\PYG{l+m+mf}{119.8}\PYG{p}{,} \PYG{l+m+mf}{122.1}\PYG{p}{)}\PYG{p}{,} 
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{maplatrange}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{(}\PYG{l+m+mf}{21.8}\PYG{p}{,} \PYG{l+m+mf}{25.6}\PYG{p}{)}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{markerstyle}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{i16p}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{rand\PYGZus{}justify}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{k+kc}{True}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{water\PYGZus{}color}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{gray}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{comp} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{U}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n}{all\PYGZus{}labels} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
+\PYG{n}{all\PYGZus{}labels}\PYG{p}{[}\PYG{n}{comp}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PKGM}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{YMSM}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{VR02}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{HUWE}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{LNCH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{CHEN}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{TUNH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+
+\PYG{n}{slopeFile}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{stn\PYGZus{}slope\PYGZus{}res\PYGZus{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{comp}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{.txt}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{n}{df} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{n}{slopeFile}\PYG{p}{,} \PYG{n}{names}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{stn}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lon}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lat}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{slope}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{delimiter}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZbs{}}\PYG{l+s+s1}{s+}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{figname} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{outloc}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{/slope\PYGZhy{}plot\PYGZus{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{comp}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{.png}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n}{plot\PYGZus{}linear\PYGZus{}trend\PYGZus{}on\PYGZus{}map}\PYG{p}{(}\PYG{n}{df}\PYG{p}{,} \PYG{n}{outfig}\PYG{o}{=}\PYG{n}{figname}\PYG{p}{,}\PYG{n}{stn\PYGZus{}labels}\PYG{o}{=}\PYG{n}{all\PYGZus{}labels}\PYG{p}{[}\PYG{n}{comp}\PYG{p}{]}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{kwargs}\PYG{p}{)}
+\end{sphinxVerbatim}
 
 \end{fulllineitems}
 
@@ -836,9 +1213,23 @@ Returns the DTW distance
 \phantomsection\label{\detokenize{modules/dtw_analysis:dtwhaclustering.dtw_analysis.dtw_signal_pairs.compute_warping_path}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{compute\_warping\_path}}}{\emph{\DUrole{n}{windowfrac}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{psi}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{fullmatrix}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
 \sphinxAtStartPar
 Returns the DTW path
-:param windowfrac: Fraction of the signal length. Only allow for shifts up to this amount away from the two diagonals.
-:param psi: Up to psi number of start and end points of a sequence can be ignored if this would lead to a lower distance
-:param full\_matrix: The full matrix of all warping paths (or accumulated cost matrix) is built
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{windowfrac}} \textendash{} Fraction of the signal length. Only allow for shifts up to this amount away from the two diagonals.
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{psi}} \textendash{} Up to psi number of start and end points of a sequence can be ignored if this would lead to a lower distance
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{full\_matrix}} \textendash{} The full matrix of all warping paths (or accumulated cost matrix) is built
+
+\end{itemize}
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
@@ -1056,7 +1447,20 @@ Plot topographic station map using PyGMT
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k+kn}{from} \PYG{n+nn}{dtwhaclustering} \PYG{k+kn}{import} \PYG{n}{plot\PYGZus{}stations}
-\PYG{n}{plot\PYGZus{}stations}\PYG{o}{.}\PYG{n}{plot\PYGZus{}station\PYGZus{}map}\PYG{p}{(}\PYG{n}{station\PYGZus{}data} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{helper\PYGZus{}files/selected\PYGZus{}stations\PYGZus{}info.txt}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{outfig}\PYG{o}{=}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{outloc}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{/station\PYGZus{}map.pdf}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{n}{outloc}\PYG{o}{=}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Figures}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Maps}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{figname} \PYG{o}{=} \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{outloc}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{/station\PYGZus{}map.pdf}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{n}{kwargs}\PYG{o}{=}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{labelfont}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{10p,Helvetica\PYGZhy{}Bold,black}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{outfig}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{n}{figname}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{stn\PYGZus{}labels}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PKGM}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{YMSM}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{VR02}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{HUWE}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{LNCH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{CHEN}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{TUNH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ERPN}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{FALI}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{WANS}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{justify}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{right}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{offset}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}10p/\PYGZhy{}1p}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{markerstyle}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{i12p}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{stn\PYGZus{}labels\PYGZus{}color}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{red}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+    \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{rand\PYGZus{}justify}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{k+kc}{True}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{plot\PYGZus{}stations}\PYG{o}{.}\PYG{n}{plot\PYGZus{}station\PYGZus{}map}\PYG{p}{(}\PYG{n}{station\PYGZus{}data} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{helper\PYGZus{}files/selected\PYGZus{}stations\PYGZus{}info.txt}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{o}{*}\PYG{o}{*}\PYG{n}{kwargs}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 \end{fulllineitems}
@@ -1084,7 +1488,7 @@ Plot topographic station map using PyGMT
 \begin{sphinxtheindex}
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{d}
-\item\relax\sphinxstyleindexentry{dtwhaclustering}\sphinxstyleindexpageref{modules/module_contents:\detokenize{module-dtwhaclustering}}
+\item\relax\sphinxstyleindexentry{dtwhaclustering}\sphinxstyleindexpageref{usage/module_contents:\detokenize{module-dtwhaclustering}}
 \item\relax\sphinxstyleindexentry{dtwhaclustering.analysis\_support}\sphinxstyleindexpageref{modules/analysis_support:\detokenize{module-dtwhaclustering.analysis_support}}
 \item\relax\sphinxstyleindexentry{dtwhaclustering.dtw\_analysis}\sphinxstyleindexpageref{modules/dtw_analysis:\detokenize{module-dtwhaclustering.dtw_analysis}}
 \item\relax\sphinxstyleindexentry{dtwhaclustering.leastSquareModeling}\sphinxstyleindexpageref{modules/leastSquareModeling:\detokenize{module-dtwhaclustering.leastSquareModeling}}

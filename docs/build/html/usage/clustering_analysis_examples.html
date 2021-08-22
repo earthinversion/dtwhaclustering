@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Clustering Analysis &mdash; dtwhaclustering 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="dtwhaclustering.analysis_support" href="../modules/analysis_support.html" />
+    <link rel="prev" title="Signal Analysis" href="signal_analysis_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> dtwhaclustering
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Usage</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="signal_analysis_examples.html">Signal Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Clustering Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-signals-for-analysis">Create signals for analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-noise-and-make-3-copies-of-each-signal">Add noise and make 3 copies of each signal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geographically-distribute-the-signals">Geographically distribute the signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reshuffle-the-noisy-signals">Reshuffle the noisy signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cluster-reshuffled-signals">Cluster reshuffled signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plot-the-geographical-locations-of-the-clusters">Plot the geographical locations of the clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polar-dendrogram">Polar dendrogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-the-dtw-distance-changes-with-iterations-to-obtain-the-dendrogram">How the DTW distance changes with iterations to obtain the dendrogram?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#euclidean-distance-based-cluster">Euclidean distance-based cluster</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/analysis_support.html">dtwhaclustering.analysis_support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot_linear_trend.html">dtwhaclustering.plot_linear_trend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/leastSquareModeling.html">dtwhaclustering.leastSquareModeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/dtw_analysis.html">dtwhaclustering.dtw_analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/plot_stations.html">dtwhaclustering.plot_stations</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dtwhaclustering</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Clustering Analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usage/clustering_analysis_examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="clustering-analysis">
+<h1>Clustering Analysis<a class="headerlink" href="#clustering-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-signals-for-analysis">
+<h2>Create signals for analysis<a class="headerlink" href="#create-signals-for-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dtwhaclustering.dtw_analysis</span> <span class="kn">import</span> <span class="n">dtw_signal_pairs</span><span class="p">,</span> <span class="n">dtw_clustering</span><span class="p">,</span> <span class="n">plot_signals</span><span class="p">,</span> <span class="n">shuffle_signals</span><span class="p">,</span> <span class="n">plot_cluster</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">dtaidistance</span> <span class="kn">import</span> <span class="n">dtw</span>
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">fcluster</span>
+
+<span class="kn">from</span> <span class="nn">scipy.cluster.hierarchy</span> <span class="kn">import</span> <span class="n">dendrogram</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">AgglomerativeClustering</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># sampling parameters</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">100</span>   <span class="c1"># sampling rate, in Hz</span>
+<span class="n">T</span>  <span class="o">=</span> <span class="mi">1</span>      <span class="c1"># duration, in seconds</span>
+<span class="n">N</span>  <span class="o">=</span> <span class="n">T</span> <span class="o">*</span> <span class="n">fs</span> <span class="c1"># duration, in samples</span>
+<span class="n">M</span>  <span class="o">=</span> <span class="mi">5</span>      <span class="c1"># number of sources</span>
+<span class="n">R</span>  <span class="o">=</span> <span class="mi">3</span>      <span class="c1"># number of copies</span>
+<span class="n">MR</span> <span class="o">=</span> <span class="n">M</span> <span class="o">*</span> <span class="n">R</span>
+
+
+<span class="c1"># time variable</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">S1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">S2</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">sawtooth</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">S3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">S4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">S5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">S5</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_signals</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/base_functions.pdf" src="../_images/base_functions.pdf" />
+</div>
+<div class="section" id="add-noise-and-make-3-copies-of-each-signal">
+<h2>Add noise and make 3 copies of each signal<a class="headerlink" href="#add-noise-and-make-3-copies-of-each-signal" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SNR</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">SNR</span>
+<span class="n">X1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S2</span><span class="p">,</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">SNR</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S3</span><span class="p">,</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">SNR</span>
+<span class="n">X3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S4</span><span class="p">,</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">SNR</span>
+<span class="n">X4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">S5</span><span class="p">,</span> <span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">SNR</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">X0</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">X3</span><span class="p">,</span> <span class="n">X4</span><span class="p">))</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C0&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;C1&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;C2&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;C3&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;C4&#39;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_signals</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/noise_copies_signals.png" src="../_images/noise_copies_signals.png" />
+</div>
+<div class="section" id="geographically-distribute-the-signals">
+<h2>Geographically distribute the signals<a class="headerlink" href="#geographically-distribute-the-signals" title="Permalink to this headline">¶</a></h2>
+<p>Now, we have 15 signals in total. Let us also randomly make these signals distributed in geographical space by assigning them longitudes and latitudes. We assume that the signals with similar waveforms are geographically co-located.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S0</span> <span class="n">variants</span> <span class="p">(</span><span class="n">S0</span><span class="p">,</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">S1</span> <span class="n">variants</span> <span class="p">(</span><span class="n">S3</span><span class="p">,</span> <span class="n">S4</span><span class="p">,</span> <span class="n">S5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">S2</span> <span class="n">variants</span> <span class="p">(</span><span class="n">S6</span><span class="p">,</span> <span class="n">S7</span><span class="p">,</span> <span class="n">S8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">S3</span> <span class="n">variants</span> <span class="p">(</span><span class="n">S9</span><span class="p">,</span> <span class="n">S10</span><span class="p">,</span> <span class="n">S11</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">S4</span> <span class="n">variants</span> <span class="p">(</span><span class="n">S12</span><span class="p">,</span> <span class="n">S13</span><span class="p">,</span> <span class="n">S14</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="mi">9</span><span class="p">)</span> <span class="n">yrange</span><span class="p">(</span><span class="mi">6</span><span class="o">-</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S0_lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">S0_lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">S1_lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">S1_lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">S2_lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">S2_lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">S3_lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">S3_lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">S3_lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">S3_lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">S4_lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">S4_lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">S0_lons</span><span class="p">,</span> <span class="n">S1_lons</span><span class="p">,</span> <span class="n">S2_lons</span><span class="p">,</span> <span class="n">S3_lons</span><span class="p">,</span> <span class="n">S4_lons</span><span class="p">))</span>
+<span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">S0_lats</span><span class="p">,</span> <span class="n">S1_lats</span><span class="p">,</span> <span class="n">S2_lats</span><span class="p">,</span> <span class="n">S3_lats</span><span class="p">,</span> <span class="n">S4_lats</span><span class="p">))</span>
+
+<span class="n">plot_cluster</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">)</span>
+<span class="c1"># plt.show()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;signals_locations.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/signals_locations.pdf" src="../_images/signals_locations.pdf" />
+</div>
+<div class="section" id="reshuffle-the-noisy-signals">
+<h2>Reshuffle the noisy signals<a class="headerlink" href="#reshuffle-the-noisy-signals" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shuffled_idx</span><span class="p">,</span> <span class="n">shuffled_matrix</span> <span class="o">=</span> <span class="n">shuffle_signals</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[],</span> <span class="n">plot_signals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">shuffled_lons</span> <span class="o">=</span> <span class="n">lons</span><span class="p">[</span><span class="n">shuffled_idx</span><span class="p">]</span>
+<span class="n">shuffled_lats</span> <span class="o">=</span> <span class="n">lats</span><span class="p">[</span><span class="n">shuffled_idx</span><span class="p">]</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;S1a&#39;</span><span class="p">,</span> <span class="s1">&#39;S1b&#39;</span><span class="p">,</span> <span class="s1">&#39;S1c&#39;</span><span class="p">,</span><span class="s1">&#39;S2a&#39;</span><span class="p">,</span> <span class="s1">&#39;S2b&#39;</span><span class="p">,</span> <span class="s1">&#39;S2c&#39;</span><span class="p">,</span><span class="s1">&#39;S3a&#39;</span><span class="p">,</span> <span class="s1">&#39;S3b&#39;</span><span class="p">,</span> <span class="s1">&#39;S3c&#39;</span><span class="p">,</span><span class="s1">&#39;S4a&#39;</span><span class="p">,</span> <span class="s1">&#39;S4b&#39;</span><span class="p">,</span> <span class="s1">&#39;S4c&#39;</span><span class="p">,</span><span class="s1">&#39;S5a&#39;</span><span class="p">,</span> <span class="s1">&#39;S5b&#39;</span><span class="p">,</span> <span class="s1">&#39;S5c&#39;</span><span class="p">])</span>
+<span class="n">newlabels</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">shuffled_idx</span><span class="p">]</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="p">[</span><span class="n">shuffled_idx</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_signals</span><span class="p">(</span><span class="n">shuffled_matrix</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">newlabels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;shuffled_signals.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/shuffled_signals.pdf" src="../_images/shuffled_signals.pdf" />
+</div>
+<div class="section" id="cluster-reshuffled-signals">
+<h2>Cluster reshuffled signals<a class="headerlink" href="#cluster-reshuffled-signals" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dtw_cluster2</span> <span class="o">=</span> <span class="n">dtw_clustering</span><span class="p">(</span><span class="n">shuffled_matrix</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">newlabels</span><span class="p">,</span> <span class="n">longitudes</span><span class="o">=</span><span class="n">shuffled_lons</span><span class="p">,</span> <span class="n">latitudes</span><span class="o">=</span><span class="n">shuffled_lats</span><span class="p">)</span>
+<span class="n">dtw_cluster2</span><span class="o">.</span><span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">annotate_above</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Signals&quot;</span><span class="p">,</span> <span class="n">figname</span><span class="o">=</span><span class="s2">&quot;example_dtw_cluster.png&quot;</span><span class="p">,</span><span class="n">distance_threshold</span><span class="o">=</span><span class="s2">&quot;optimal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/example_dtw_cluster.pdf" src="../_images/example_dtw_cluster.pdf" />
+<p>In the above dendrogram, we manually selected the threshold distance to be 3 to find the best clusters</p>
+</div>
+<div class="section" id="plot-the-geographical-locations-of-the-clusters">
+<h2>Plot the geographical locations of the clusters<a class="headerlink" href="#plot-the-geographical-locations-of-the-clusters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dtw_cluster2</span><span class="o">.</span><span class="n">plot_cluster_xymap</span><span class="p">(</span><span class="n">dtw_distance</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">tickfontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">cbarsize</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;signals_cluster_xy_map.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/signals_cluster_xy_map.pdf" src="../_images/signals_cluster_xy_map.pdf" />
+</div>
+<div class="section" id="polar-dendrogram">
+<h2>Polar dendrogram<a class="headerlink" href="#polar-dendrogram" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kwargs_dendro</span><span class="o">=</span><span class="p">{</span>
+<span class="s2">&quot;plotstyle&quot;</span><span class="p">:</span><span class="s1">&#39;seaborn&#39;</span><span class="p">,</span>
+<span class="s2">&quot;linewidth&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+<span class="s2">&quot;gridwidth&quot;</span><span class="p">:</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="s2">&quot;gridcolor&quot;</span><span class="p">:</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+<span class="s1">&#39;xtickfontsize&#39;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+<span class="s1">&#39;ytickfontsize&#39;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+<span class="s2">&quot;figsize&quot;</span><span class="p">:(</span><span class="mi">40</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span>
+<span class="s2">&quot;distance_threshold&quot;</span><span class="p">:</span><span class="s2">&quot;optimal&quot;</span> <span class="c1">#use optimal number of clusters estimated by elbow method</span>
+<span class="p">}</span>
+
+<span class="n">dtw_cluster2</span><span class="o">.</span><span class="n">plot_polar_dendrogram</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs_dendro</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;example_polar_dendro.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/example_polar_dendro.pdf" src="../_images/example_polar_dendro.pdf" />
+</div>
+<div class="section" id="how-the-dtw-distance-changes-with-iterations-to-obtain-the-dendrogram">
+<h2>How the DTW distance changes with iterations to obtain the dendrogram?<a class="headerlink" href="#how-the-dtw-distance-changes-with-iterations-to-obtain-the-dendrogram" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dtw_cluster2</span><span class="o">.</span><span class="n">plot_hac_iteration</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/plot_hac_iteration.pdf" src="../_images/plot_hac_iteration.pdf" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dtw_cluster2</span><span class="o">.</span><span class="n">plot_optimum_cluster</span><span class="p">(</span><span class="n">legend_outside</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;optimum_clusters.pdf&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../_images/optimum_clusters.pdf" src="../_images/optimum_clusters.pdf" />
+</div>
+<div class="section" id="euclidean-distance-based-cluster">
+<h2>Euclidean distance-based cluster<a class="headerlink" href="#euclidean-distance-based-cluster" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_linkage</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="c1"># create the counts of samples under each node</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">children_</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">merge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">children_</span><span class="p">):</span>
+        <span class="n">current_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">child_idx</span> <span class="ow">in</span> <span class="n">merge</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">child_idx</span> <span class="o">&lt;</span> <span class="n">n_samples</span><span class="p">:</span>
+                <span class="n">current_count</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># leaf node</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_count</span> <span class="o">+=</span> <span class="n">counts</span><span class="p">[</span><span class="n">child_idx</span> <span class="o">-</span> <span class="n">n_samples</span><span class="p">]</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_count</span>
+
+    <span class="n">linkage_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">distances_</span><span class="p">,</span>
+                                    <span class="n">counts</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">linkage_matrix</span>
+
+<span class="k">def</span> <span class="nf">plot_dendrogram</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># Create linkage matrix and then plot the dendrogram</span>
+
+    <span class="n">linkage_matrix</span> <span class="o">=</span> <span class="n">compute_linkage</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+    <span class="c1"># Plot the corresponding dendrogram</span>
+    <span class="n">dendrogram</span><span class="p">(</span><span class="n">linkage_matrix</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="c1">#‘ward’ minimizes the variance of the clusters being merged</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AgglomerativeClustering</span><span class="p">(</span><span class="n">distance_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">affinity</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span><span class="n">linkage</span><span class="o">=</span><span class="s1">&#39;ward&#39;</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># plot the top three levels of the dendrogram</span>
+<span class="n">plot_dendrogram</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">color_threshold</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Signal Indexes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;example_euclidean_cluster.pdf&#39;</span><span class="p">,</span><span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/example_euclidean_cluster.pdf" src="../_images/example_euclidean_cluster.pdf" />
+<p>Both Euclidean and DTW based clustering results are similar. However, we can see some obvious differences. Let us list some of the similarity and differences for the above example.</p>
+<ul class="simple">
+<li><p>Both the results found 5 significant clusters.</p></li>
+<li><p>Both Euclidean and DTW based HAC found that the random function based time series (12, 13, 14) are most dissimilar</p></li>
+<li><p>The two closest clusters with DTW is sawtooth (6,7,8) and sine func(0,1,2). While that with the Euclidean, it is abs_cosine (6,7,8) and sawtooth fn (3,4,5)</p></li>
+</ul>
+<p>The two results are similar because the signals considered for this example are stationary in nature.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../modules/analysis_support.html" class="btn btn-neutral float-right" title="dtwhaclustering.analysis_support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="signal_analysis_examples.html" class="btn btn-neutral float-left" title="Signal Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Utpal Kumar.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -10,13 +10,15 @@ Welcome to dtwhaclustering's documentation!
    :caption: Usage
    :maxdepth: 2
    
+   usage/module_contents
    usage/install
+   usage/signal_analysis_examples
+   usage/clustering_analysis_examples
    
 .. toctree::
    :caption: Modules
    :maxdepth: 3
 
-   modules/module_contents
    modules/analysis_support
    modules/plot_linear_trend
    modules/leastSquareModeling

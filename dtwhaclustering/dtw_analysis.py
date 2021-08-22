@@ -121,6 +121,7 @@ class dtw_signal_pairs:
     def compute_warping_path(self, windowfrac=None, psi=None, fullmatrix=False):
         '''
         Returns the DTW path
+
         :param windowfrac: Fraction of the signal length. Only allow for shifts up to this amount away from the two diagonals.
         :param psi: Up to psi number of start and end points of a sequence can be ignored if this would lead to a lower distance
         :param full_matrix: The full matrix of all warping paths (or accumulated cost matrix) is built

@@ -89,11 +89,12 @@
             
               <p class="caption"><span class="caption-text">Usage</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/examples.html">Examples</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="module_contents.html">Dynamic Time Warping based Hierarchical Agglomerative Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analysis_support.html">dtwhaclustering.analysis_support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_linear_trend.html">dtwhaclustering.plot_linear_trend</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leastSquareModeling.html">dtwhaclustering.leastSquareModeling</a></li>
@@ -378,10 +379,16 @@ This module is built around the dtaidistance package for the DTW computation and
 <dl class="py method">
 <dt class="sig sig-object py" id="dtwhaclustering.dtw_analysis.dtw_signal_pairs.compute_warping_path">
 <span class="sig-name descname"><span class="pre">compute_warping_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">windowfrac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fullmatrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dtwhaclustering.dtw_analysis.dtw_signal_pairs.compute_warping_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the DTW path
-:param windowfrac: Fraction of the signal length. Only allow for shifts up to this amount away from the two diagonals.
-:param psi: Up to psi number of start and end points of a sequence can be ignored if this would lead to a lower distance
-:param full_matrix: The full matrix of all warping paths (or accumulated cost matrix) is built</p>
+<dd><p>Returns the DTW path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>windowfrac</strong> – Fraction of the signal length. Only allow for shifts up to this amount away from the two diagonals.</p></li>
+<li><p><strong>psi</strong> – Up to psi number of start and end points of a sequence can be ignored if this would lead to a lower distance</p></li>
+<li><p><strong>full_matrix</strong> – The full matrix of all warping paths (or accumulated cost matrix) is built</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
