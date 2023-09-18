@@ -1,6 +1,6 @@
 # Dynamic Time Warping based Hierarchical Agglomerative Clustering
-
-Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
+- For details, see the research paper: [On analyzing GNSS displacement field variability of Taiwan: Hierarchical Agglomerative Clustering based on Dynamic Time Warping technique](https://doi.org/10.1016/j.cageo.2022.105243)
+- Codes to perform Dynamic Time Warping Based Hierarchical Agglomerative Clustering of GPS data
 
 ## Documentation
 Installation and usage information can be obtained from the documentation: [dtwhaclustering.pdf](docs/build/latex/dtwhaclustering.pdf)
@@ -79,6 +79,10 @@ plt.show()
 
 ## References
 1. Kumar, U., Chao, B.F., Chang, E.T.-Y.Y., 2020. What Causes the Common‐Mode Error in Array GPS Displacement Fields: Case Study for Taiwan in Relation to Atmospheric Mass Loading. Earth Sp. Sci. 0–2. https://doi.org/10.1029/2020ea001159
+
+## Please cite this work as
+1. Kumar, U., Cédric. P. Legendre, Jian-Cheng Lee, Li Zhao, Benjamin Fong Chao (2022) On analyzing GNSS displacement field variability of Taiwan: Hierarchical Agglomerative Clustering based on Dynamic Time Warping technique Computers & Geosciences, 105243. https://doi.org/10.1016/j.cageo.2022.105243
+2. Kumar, U., Legendre, C.P. (2022) Crust-mantle decoupling beneath Afar revealed by Rayleigh-wave tomography Sci Rep 12, 17036 https://doi.org/10.1038/s41598-022-20890-5
 
 ## License
 © 2021 Utpal Kumar
